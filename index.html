@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#070b15">
+<meta name="description" content="The Observatory — an archive of everything that has yet to be understood.">
+<title>The Observatory — A universe of questions</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap');
+:root{--bg:#070b15;--ink:#e9edf5;--muted:#8490a6;--line:rgba(165,185,220,.14);--blue:#a9c8ff;--gold:#d8b98a}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Manrope, sans-serif;overflow-x:hidden}
+#stars,#stars2{position:fixed;inset:0;pointer-events:none;z-index:-2;background-repeat:repeat}
+#stars{background-image:radial-gradient(1px 1px at 18px 28px,#d7e4ff 99%,transparent),radial-gradient(1px 1px at 82px 110px,#fff 99%,transparent),radial-gradient(1px 1px at 145px 61px,#9bb7e8 99%,transparent),radial-gradient(1px 1px at 211px 172px,#fff 99%,transparent);background-size:260px 220px;opacity:.52;animation:drift 90s linear infinite}
+#stars2{background-image:radial-gradient(1.5px 1.5px at 40px 70px,#d9e8ff 99%,transparent),radial-gradient(1px 1px at 190px 30px,#c3d4ff 99%,transparent),radial-gradient(1px 1px at 300px 150px,#fff 99%,transparent);background-size:370px 280px;opacity:.28;animation:drift 150s linear infinite reverse}
+body:before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 50% 25%,rgba(48,76,132,.24),transparent 52%),radial-gradient(ellipse at 8% 70%,rgba(52,45,100,.12),transparent 40%),linear-gradient(180deg,rgba(7,11,21,.2),#070b15 85%)}
+@keyframes drift{to{transform:translate3d(-260px,220px,0)}}
+a{color:inherit;text-decoration:none}.mono{font-family:'DM Mono',monospace;letter-spacing:.12em;text-transform:uppercase}
+.nav{position:relative;z-index:5;display:flex;align-items:center;justify-content:space-between;padding:30px clamp(24px,6vw,90px);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:12px;font-size:12px;letter-spacing:.22em;font-weight:600}.brand-mark{width:28px;height:28px;border:1px solid rgba(169,200,255,.5);border-radius:50%;position:relative}.brand-mark:before{content:"";position:absolute;inset:5px;border:1px solid var(--blue);border-radius:50%}.brand-mark:after{content:"";position:absolute;width:4px;height:4px;background:var(--gold);border-radius:50%;top:3px;right:4px}
+.navlinks{display:flex;gap:clamp(18px,3vw,42px);font-size:11px;color:#a4aec2;letter-spacing:.12em;text-transform:uppercase}.navlinks a{transition:color .25s}.navlinks a:hover{color:#fff}.navlinks a.future{opacity:.48;cursor:default}
+.hero{min-height:calc(100svh - 89px);display:grid;grid-template-columns:1.05fr .95fr;align-items:center;max-width:1440px;margin:auto;padding:60px clamp(24px,7vw,110px) 90px;gap:4vw}
+.eyebrow{color:var(--blue);font-size:10px;letter-spacing:.22em;text-transform:uppercase;display:flex;align-items:center;gap:12px}.eyebrow:before{content:"";width:28px;height:1px;background:var(--blue)}
+h1{font-size:clamp(54px,8vw,112px);font-weight:300;letter-spacing:-.065em;line-height:.94;margin:25px 0 22px}.hollow{color:transparent;-webkit-text-stroke:1px rgba(224,234,250,.72)}
+.tagline{font-family:'Playfair Display',serif;font-size:clamp(20px,2.2vw,29px);font-weight:400;color:#d2d9e7;line-height:1.4;max-width:520px}
+.intro{font-size:14px;line-height:1.9;color:var(--muted);max-width:440px;margin:24px 0 35px}
+.cta{display:inline-flex;align-items:center;gap:18px;border:1px solid rgba(169,200,255,.4);padding:15px 20px;font-size:10px;letter-spacing:.17em;text-transform:uppercase;transition:all .3s;background:rgba(111,146,208,.06)}.cta:hover{background:rgba(111,146,208,.16);border-color:var(--blue);transform:translateY(-2px)}.arrow{font-size:17px;color:var(--blue)}
+.visual{height:min(590px,65vw);min-height:360px;display:grid;place-items:center;position:relative}.planet{width:min(33vw,390px);aspect-ratio:1;border-radius:50%;position:relative;background:radial-gradient(circle at 32% 26%,#8a9bb8 0,#536782 12%,#283d5e 35%,#111b31 65%,#070b15 76%);box-shadow:inset -40px -30px 80px #03050c,0 0 90px rgba(88,126,190,.16);animation:planetfloat 7s ease-in-out infinite}.planet:before{content:"";position:absolute;inset:-8%;border-radius:50%;border:1px solid rgba(169,200,255,.13);box-shadow:0 0 35px rgba(108,154,220,.08)}.planet:after{content:"";position:absolute;inset:0;border-radius:50%;background:linear-gradient(140deg,transparent 38%,rgba(2,5,12,.55) 80%)}
+.orbit{position:absolute;width:125%;height:42%;border:1px solid rgba(185,208,245,.28);border-radius:50%;transform:rotate(-24deg)}.orbit2{position:absolute;width:145%;height:55%;border:1px solid rgba(185,208,245,.1);border-radius:50%;transform:rotate(34deg)}.orbit-dot{position:absolute;width:8px;height:8px;border-radius:50%;background:#e6cda8;box-shadow:0 0 14px #e6cda8;top:22%;left:17%}.visual-label{position:absolute;bottom:7%;right:0;color:#73819a;font-size:9px;line-height:1.9;text-align:right}
+.hero-bottom{position:absolute;bottom:28px;left:clamp(24px,7vw,110px);right:clamp(24px,7vw,110px);display:flex;justify-content:space-between;color:#66738a;font-size:9px;letter-spacing:.16em;text-transform:uppercase}
+.section{max-width:1440px;margin:auto;padding:100px clamp(24px,7vw,110px)}.section-head{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:45px}.section-kicker{font-size:10px;color:var(--blue);letter-spacing:.2em;text-transform:uppercase}.section-title{font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(35px,5vw,58px);margin:12px 0 0}.section-note{font-size:11px;color:var(--muted);max-width:230px;line-height:1.8}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{min-height:310px;border:1px solid var(--line);background:linear-gradient(145deg,rgba(25,36,58,.65),rgba(8,13,24,.7));padding:28px;position:relative;overflow:hidden;transition:transform .35s,border-color .35s,background .35s}.card:hover{transform:translateY(-6px);border-color:rgba(169,200,255,.38);background:linear-gradient(145deg,rgba(35,49,77,.8),rgba(8,13,24,.8))}.card:after{content:"";position:absolute;width:200px;height:200px;border-radius:50%;border:1px solid rgba(169,200,255,.07);right:-80px;bottom:-100px;transition:transform .5s}.card:hover:after{transform:scale(1.3)}
+.card-num{font-size:10px;color:#687891}.card-symbol{height:90px;display:grid;place-items:center;color:var(--blue);font-size:42px;font-weight:200}.card h3{font-family:'Playfair Display',serif;font-size:26px;font-weight:400;margin:6px 0 12px}.card p{font-size:12px;line-height:1.8;color:var(--muted);max-width:260px}.card-footer{position:absolute;bottom:25px;left:28px;right:28px;display:flex;justify-content:space-between;font-size:9px;color:#71819b;letter-spacing:.14em;text-transform:uppercase}
+.status{max-width:1440px;margin:0 auto;padding:0 clamp(24px,7vw,110px) 90px}.terminal{border:1px solid var(--line);background:rgba(5,9,17,.7);padding:24px 30px;display:grid;grid-template-columns:1.3fr repeat(3,1fr);gap:20px;align-items:center}.terminal-title{font-size:10px;letter-spacing:.18em;color:var(--blue);text-transform:uppercase}.stat{border-left:1px solid var(--line);padding-left:22px}.stat-label{font-size:9px;color:#75839b;letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px}.stat-value{font-family:'DM Mono',monospace;font-size:18px;color:#dbe5f7}
+footer{border-top:1px solid var(--line);padding:30px clamp(24px,6vw,90px);display:flex;justify-content:space-between;color:#5f6b80;font-size:9px;letter-spacing:.13em;text-transform:uppercase}
+@keyframes planetfloat{50%{transform:translateY(-9px)}}
+@media(max-width:850px){.nav{padding:22px 24px}.navlinks{gap:14px;font-size:9px}.hero{grid-template-columns:1fr;padding-top:70px;gap:0}.hero-copy{z-index:2}.visual{height:380px;min-height:0;margin-top:-30px}.planet{width:min(58vw,300px)}.hero-bottom{position:static;margin:0 24px 30px}.cards{grid-template-columns:1fr}.card{min-height:260px}.terminal{grid-template-columns:1fr 1fr}.terminal-title{grid-column:1/-1}.stat:nth-child(2){border:0;padding:0}footer{gap:15px;flex-wrap:wrap}}
+@media(max-width:520px){.brand{font-size:10px}.navlinks{gap:10px}.navlinks a:nth-child(4),.navlinks a:nth-child(5){display:none}h1{font-size:60px}.visual{height:300px}.section{padding-top:70px;padding-bottom:70px}.section-head{align-items:start;flex-direction:column}.terminal{padding:20px}.hero-bottom{font-size:8px}}
+</style>
+</head>
+<body>
+<div id="stars"></div><div id="stars2"></div>
+<header class="nav">
+<a class="brand" href="#"><span class="brand-mark"></span>THE OBSERVATORY</a>
+<nav class="navlinks" aria-label="Main navigation"><a href="#">Home</a><a class="future" href="#" title="Coming soon">Research</a><a class="future" href="#" title="Coming soon">Archive</a><a class="future" href="#" title="Coming soon">Projects</a><a class="future" href="#" title="Coming soon">About</a></nav>
+</header>
+<main>
+<section class="hero">
+<div class="hero-copy">
+<div class="eyebrow">A personal research universe</div>
+<h1>THE<br><span class="hollow">OBSERVATORY</span></h1>
+<div class="tagline">An archive of everything<br>that has yet to be understood.</div>
+<p class="intro">A place for questions that refuse to stay quiet. For distant worlds, impossible ideas, unfinished experiments, and the things we create while trying to make sense of it all.</p>
+<a class="cta" href="#observing">ENTER THE OBSERVATORY <span class="arrow">↗</span></a>
+</div>
+<div class="visual" aria-label="Abstract celestial planet illustration">
+<div class="orbit2"></div><div class="orbit"></div><div class="planet"></div><div class="orbit-dot"></div>
+<div class="visual-label mono">OBJECT 001<br>UNCLASSIFIED / INFINITE</div>
+</div>
+<div class="hero-bottom mono"><span>EST. IN CURIOSITY</span><span>SCROLL TO EXPLORE ↓</span></div>
+</section>
+<section class="section" id="observing">
+<div class="section-head"><div><div class="section-kicker">01 — Active curiosities</div><h2 class="section-title">Currently observing</h2></div><p class="section-note">Three windows into a universe of questions. The list is never truly complete.</p></div>
+<div class="cards">
+<article class="card"><div class="card-num mono">FIELD 01 / COSMOS</div><div class="card-symbol">✦</div><h3>The Universe</h3><p>Physics, astronomy, the strange architecture of reality, and the vastness that makes us ask.</p><div class="card-footer"><span>Exploring the unknown</span><span>↗</span></div></article>
+<article class="card"><div class="card-num mono">FIELD 02 / THOUGHT</div><div class="card-symbol">⌘</div><h3>The Mind</h3><p>Philosophy, questions of existence, ideas that rearrange the way the world is seen.</p><div class="card-footer"><span>Under examination</span><span>↗</span></div></article>
+<article class="card"><div class="card-num mono">FIELD 03 / CREATION</div><div class="card-symbol">⌁</div><h3>The Workshop</h3><p>Stories, experiments, projects, and strange little things that begin as a thought.</p><div class="card-footer"><span>In progress</span><span>↗</span></div></article>
+</div>
+</section>
+<section class="status"><div class="terminal"><div class="terminal-title mono">⌁ Observatory terminal / live status</div><div class="stat"><div class="stat-label">Institute status</div><div class="stat-value">OPERATIONAL</div></div><div class="stat"><div class="stat-label">Active investigations</div><div class="stat-value">03</div></div><div class="stat"><div class="stat-label">Unsolved questions</div><div class="stat-value">∞</div></div></div></section>
+</main>
+<footer><span>THE OBSERVATORY</span><span>Built for the curious</span><span>© 2026 — AND BEYOND</span></footer>
+<script>
+document.querySelectorAll('.future').forEach(a=>a.addEventListener('click',e=>e.preventDefault()));
+</script>
+</body>
+</html>
