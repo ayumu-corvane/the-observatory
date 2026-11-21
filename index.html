@@ -105,6 +105,36 @@ const map=document.querySelector('.map');
 const places=[...document.querySelectorAll('.place')];
 const STORAGE_KEY='observatory-map-positions-v1';
 let saved={};try{saved=JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}')}catch{}
+// Make the other map layers/components draggable too.
+const COMPONENT_KEY='observatory-map-components-v1';
+let componentPositions={};try{componentPositions=JSON.parse(localStorage.getItem(COMPONENT_KEY)||'{}')}catch{}
+const mapComponents=[...map.children].filter(el=>!['defs','rect'].includes(el.tagName.toLowerCase())&&!el.classList.contains('place')&&!el.classList.contains('map-note'));
+mapComponents.forEach((component,index)=>{
+  const key='map-component-'+index;
+  component.dataset.dragComponent=key;
+  if(componentPositions[key])component.setAttribute('transform',componentPositions[key]);
+  let dragging=false,startX=0,startY=0,baseX=0,baseY=0,originalTransform='';
+  component.style.cursor='grab';
+  component.addEventListener('pointerdown',e=>{
+    if(e.button!==0)return;
+    e.stopPropagation();
+    const matrix=component.transform.baseVal.consolidate()?.matrix;
+    startX=e.clientX;startY=e.clientY;baseX=matrix?.e||0;baseY=matrix?.f||0;
+    originalTransform=component.getAttribute('transform')||'';
+    dragging=true;component.setPointerCapture(e.pointerId);
+  });
+  component.addEventListener('pointermove',e=>{
+    if(!dragging)return;
+    const rect=map.getBoundingClientRect(),dx=(e.clientX-startX)*1500/rect.width,dy=(e.clientY-startY)*1000/rect.height;
+    if(Math.abs(dx)+Math.abs(dy)>3){component.setAttribute('transform',`translate(${baseX+dx} ${baseY+dy}) ${originalTransform}`.trim());component.style.cursor='grabbing';}
+  });
+  component.addEventListener('pointerup',e=>{
+    if(!dragging)return;dragging=false;component.style.cursor='grab';
+    const current=component.getAttribute('transform')||'';
+    if(current!==originalTransform){componentPositions[key]=current;localStorage.setItem(COMPONENT_KEY,JSON.stringify(componentPositions));}
+  });
+  component.addEventListener('pointercancel',()=>{dragging=false;component.style.cursor='grab';});
+});
 places.forEach(place=>{
   const name=place.dataset.name;
   if(saved[name])place.setAttribute('transform',saved[name]);
