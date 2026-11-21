@@ -6,7 +6,7 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Uncial+Antiqua&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
 :root{--paper:#d9c79e;--ink:#30291d;--dark:#17251e;--gold:#a78045;--green:#51664c;--water:#647f82}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);background:#17241e;font-family:'Crimson Text',serif}
+*{box-sizing:border-box}html{scroll-behavior:auto}body{margin:0;color:var(--ink);background:#17241e;font-family:'Crimson Text',serif}
 body:before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse,transparent 45%,rgba(0,0,0,.55) 100%);z-index:5}
 .top{padding:32px 24px 25px;text-align:center;color:#e0d0aa;background:linear-gradient(#17241e,#24362b);border-bottom:1px solid #8d774e}
 .kicker{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:#b8a478}
@@ -20,14 +20,14 @@ h1{font-family:'Uncial Antiqua',serif;font-size:clamp(35px,6vw,70px);font-weight
 .region{font-family:'Uncial Antiqua',serif!important;font-size:28px;letter-spacing:4px;fill:#554b36!important;opacity:.65;stroke:none!important}
 .place{cursor:pointer;transition:filter .2s,transform .2s;transform-box:fill-box;transform-origin:center}.place:hover{filter:drop-shadow(0 0 5px #fff5c4);transform:scale(1.12)}
 .place .label{font-size:20px;text-anchor:middle;font-weight:600}.place .small{font-size:16px;text-anchor:middle;font-style:italic}.place .pin{fill:#413623;stroke:#d9c99f;stroke-width:2}
-.place:hover .label{fill:#7b3b25}
+
 .map-note{font-size:15px;text-anchor:middle;font-style:italic;fill:#5a4a32!important}
 .compass{font-family:'Uncial Antiqua',serif!important;fill:#463a26!important;stroke:none!important;font-size:24px;text-anchor:middle}
 .frame-caption{display:flex;justify-content:space-between;padding:10px 4px 0;font-size:13px;font-style:italic;color:#574a32}
 .instructions{text-align:center;color:#d8c69b;padding:36px 15px 50px;font-size:18px}.instructions strong{font-family:'IM Fell English',serif;font-size:24px;font-weight:400}
 .legend{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:15px}.legend span{border:1px solid #6d674f;padding:6px 12px;color:#c7b991;font-size:12px}
 footer{text-align:center;padding:24px;border-top:1px solid #5b604c;color:#9c997e;font-size:12px;letter-spacing:.12em}
-.modal{position:fixed;inset:0;background:rgba(5,10,7,.78);display:none;place-items:center;z-index:20;padding:20px;backdrop-filter:blur(5px)}.modal.open{display:grid}
+.modal{position:fixed;inset:0;background:rgba(5,10,7,.78);display:none;place-items:center;z-index:20;padding:20px;}.modal.open{display:grid}
 .panel{max-width:540px;width:100%;padding:36px;background:#d7c69d;border:5px double #67543a;box-shadow:0 20px 70px #000;position:relative;text-align:center}
 .panel h2{font-family:'Uncial Antiqua',serif;font-size:32px;font-weight:400;margin:5px 0 14px}.panel p{font-size:20px;line-height:1.5}.panel .stamp{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#716045}.close{position:absolute;right:12px;top:12px;background:none;border:0;font-size:26px;cursor:pointer;color:#453724}.panel .coming{display:inline-block;margin-top:10px;border-top:1px solid #8b7754;padding-top:14px;font-style:italic;color:#6d5a3e}
 @media(max-width:650px){.shell{padding:7px}.map-frame{padding:4px}.topline{gap:10px;font-size:9px}.frame-caption{font-size:11px}.instructions{padding:25px 10px}.map{min-width:800px}.map-frame{overflow:auto}.map-frame:after{content:'← Scroll across the map →';position:sticky;left:0;display:block;text-align:center;font-size:12px;color:#55462f;padding:6px}}
@@ -100,6 +100,38 @@ footer{text-align:center;padding:24px;border-top:1px solid #5b604c;color:#9c997e
 <footer>THE OBSERVATORY · A MAP OF CURIOSITY · DRAWN IN PROGRESS</footer>
 <div class="modal" id="modal" role="dialog" aria-modal="true"><div class="panel"><button class="close" aria-label="Close">×</button><div class="stamp">A place on the map</div><h2 id="modal-title"></h2><p id="modal-desc"></p><div class="coming">This corner of the world is being charted...</div></div></div>
 <script>
-const modal=document.getElementById('modal');document.querySelectorAll('.place').forEach(place=>place.addEventListener('click',()=>{document.getElementById('modal-title').textContent=place.dataset.name;document.getElementById('modal-desc').textContent=place.dataset.desc;modal.classList.add('open')}));document.querySelector('.close').onclick=()=>modal.classList.remove('open');modal.addEventListener('click',e=>{if(e.target===modal)modal.classList.remove('open')});document.addEventListener('keydown',e=>{if(e.key==='Escape')modal.classList.remove('open')});
+const modal=document.getElementById('modal');
+const map=document.querySelector('.map');
+const places=[...document.querySelectorAll('.place')];
+const STORAGE_KEY='observatory-map-positions-v1';
+let saved={};try{saved=JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}')}catch{}
+places.forEach(place=>{
+  const name=place.dataset.name;
+  if(saved[name])place.setAttribute('transform',saved[name]);
+  let dragging=false,moved=false,startX=0,startY=0,baseX=0,baseY=0;
+  place.addEventListener('pointerdown',e=>{
+    if(e.button!==0)return;
+    const matrix=place.transform.baseVal.consolidate()?.matrix;
+    if(!matrix)return;
+    startX=e.clientX;startY=e.clientY;baseX=matrix.e;baseY=matrix.f;
+    dragging=true;moved=false;place.setPointerCapture(e.pointerId);
+  });
+  place.addEventListener('pointermove',e=>{
+    if(!dragging)return;
+    const rect=map.getBoundingClientRect(),scaleX=1500/rect.width,scaleY=1000/rect.height;
+    const dx=(e.clientX-startX)*scaleX,dy=(e.clientY-startY)*scaleY;
+    if(Math.abs(dx)+Math.abs(dy)>4)moved=true;
+    if(moved)place.setAttribute('transform',`translate(${baseX+dx} ${baseY+dy})`);
+  });
+  place.addEventListener('pointerup',e=>{
+    if(!dragging)return;dragging=false;
+    if(moved){saved[name]=place.getAttribute('transform');localStorage.setItem(STORAGE_KEY,JSON.stringify(saved));}
+    else{document.getElementById('modal-title').textContent=name;document.getElementById('modal-desc').textContent=place.dataset.desc;modal.classList.add('open');}
+  });
+  place.addEventListener('pointercancel',()=>dragging=false);
+});
+document.querySelector('.close').onclick=()=>modal.classList.remove('open');
+modal.addEventListener('click',e=>{if(e.target===modal)modal.classList.remove('open')});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')modal.classList.remove('open')});
 </script>
 </body></html>
