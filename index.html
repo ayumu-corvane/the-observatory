@@ -105,13 +105,12 @@ const map=document.querySelector('.map');
 const places=[...document.querySelectorAll('.place')];
 const STORAGE_KEY='observatory-map-positions-v1';
 let saved={};try{saved=JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}')}catch{}
-// Make the other map layers/components draggable too.
-const COMPONENT_KEY='observatory-map-components-v1';
+// Make individual trees and mountains draggable—not entire forests or mountain ranges.
+const COMPONENT_KEY='observatory-map-components-v2';
 let componentPositions={};try{componentPositions=JSON.parse(localStorage.getItem(COMPONENT_KEY)||'{}')}catch{}
-const mapComponents=[...map.children].filter(el=>!['defs','rect'].includes(el.tagName.toLowerCase())&&!el.classList.contains('place')&&!el.classList.contains('map-note'));
+const mapComponents=[...map.querySelectorAll('use[href="#tree"],use[href="#mountain"]')];
 mapComponents.forEach((component,index)=>{
   const key='map-component-'+index;
-  component.dataset.dragComponent=key;
   if(componentPositions[key])component.setAttribute('transform',componentPositions[key]);
   let dragging=false,startX=0,startY=0,baseX=0,baseY=0,originalTransform='';
   component.style.cursor='grab';
