@@ -10,22 +10,22 @@
 body:before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse,transparent 45%,rgba(0,0,0,.55) 100%);z-index:5}
 .top{padding:32px 24px 25px;text-align:center;color:#e0d0aa;background:linear-gradient(#17241e,#24362b);border-bottom:1px solid #8d774e}
 .kicker{font-size:12px;letter-spacing:.28em;text-color:#b8a478}
-h1{font-family:'Uncial Antiqua',serif;font-size:clamp(35px,6vw,70px);font-weight:400;margin:12px 0 5px;text-shadow:0 3px 0 #111}
+h1{color:#f4c95d;font-family:'Uncial Antiqua',serif;font-size:clamp(35px,6vw,70px);font-weight:400;margin:12px 0 5px;text-shadow:0 3px 0 #111}
 .subtitle{font-style:italic;font-size:20px;color:#c7b58e}
 .topline{display:flex;justify-content:center;gap:24px;margin-top:23px;font-size:11px;letter-spacing:.16em;text-color:#9f9a7c}
 .shell{max-width:1600px;margin:auto;padding:20px}
-.map-frame{background:#9db7a3;padding:12px;border:1px solid #77613e;box-shadow:0 15px 55px #050b08;position:relative}
-.map{width:100%;height:auto;display:block;background:#8eb4b8;border:2px solid #594a32;box-shadow:inset 0 0 50px #7e755b}
-.map text{font-family:'IM Fell English',serif;fill:#322c20;paint-order:stroke;stroke:#d4c6a0;stroke-width:2px;stroke-opacity:.65;stroke-linejoin:round}
-.region{font-family:'Uncial Antiqua',serif!important;font-size:28px;letter-spacing:4px;fill:#554b36!important;opacity:.65;stroke:none!important}
+.map-frame{background:#9db7a3;padding:12px;border:1px solid #e9b94d;box-shadow:0 15px 55px #050b08;position:relative}
+.map{width:100%;height:auto;display:block;background:#8eb4b8;border:2px solid #e9b94d;box-shadow:inset 0 0 50px #7e755b}
+.map text{font-family:'IM Fell English',serif;fill:#e9b94d;paint-order:stroke;stroke:#274b48;stroke-width:2.5px;stroke-opacity:.9;stroke-linejoin:round}
+.region{font-family:'Uncial Antiqua',serif!important;font-size:28px;letter-spacing:4px;fill:#f2c75e!important;opacity:.95;stroke:#285451!important;stroke-width:2px!important}
 .place{cursor:grab;user-select:none;-webkit-user-select:none}.place:active{cursor:grabbing}
 .place .label{font-size:20px;text-anchor:middle;font-weight:600}.place .small{font-size:16px;text-anchor:middle;font-style:italic}.place .pin{fill:#413623;stroke:#d9c99f;stroke-width:2}
 
-.map-note{font-size:15px;text-anchor:middle;font-style:italic;fill:#5a4a32!important}
-.compass{font-family:'Uncial Antiqua',serif!important;fill:#463a26!important;stroke:none!important;font-size:24px;text-anchor:middle}
-.frame-caption{display:flex;justify-content:space-between;padding:10px 4px 0;font-size:13px;font-style:italic;color:#574a32}
-.instructions{text-align:center;color:#d8c69b;padding:36px 15px 50px;font-size:18px}.instructions strong{font-family:'IM Fell English',serif;font-size:24px;font-weight:400}
-.legend{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:15px}.legend span{border:1px solid #6d674f;padding:6px 12px;color:#c7b991;font-size:12px}
+.map-note{font-size:15px;text-anchor:middle;font-style:italic;fill:#f2c75e!important;stroke:#285451!important;stroke-width:2px!important}
+.compass{font-family:'Uncial Antiqua',serif!important;fill:#f2c75e!important;stroke:#285451!important;stroke-width:2px!important;font-size:24px;text-anchor:middle}
+.frame-caption{display:flex;justify-content:space-between;padding:10px 4px 0;font-size:13px;font-style:italic;color:#f2c75e}
+.instructions{text-align:center;color:#e9b94d;padding:36px 15px 50px;font-size:18px}.instructions strong{font-family:'IM Fell English',serif;font-size:24px;font-weight:400}
+.legend{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:15px}.legend span{border:1px solid #e9b94d;padding:6px 12px;color:#e9b94d;font-size:12px}
 footer{text-align:center;padding:24px;border-top:1px solid #5b604c;color:#9c997e;font-size:12px;letter-spacing:.12em}
 .modal{position:fixed;inset:0;background:rgba(5,10,7,.78);display:none;place-items:center;z-index:20;padding:20px;}.modal.open{display:grid}
 .panel{max-width:540px;width:100%;padding:36px;background:#d7c69d;border:5px double #67543a;box-shadow:0 20px 70px #000;position:relative;text-align:center}
@@ -39,20 +39,20 @@ footer{text-align:center;padding:24px;border-top:1px solid #5b604c;color:#9c997e
 <defs>
 <pattern id="paper" width="90" height="90" patternUnits="userSpaceOnUse"><rect width="90" height="90" fill="#e1c99b"/><path d="M0 22 Q20 18 45 25 T90 20 M0 67 Q20 72 45 63 T90 70" fill="none" stroke="#b4a77f" stroke-width=".7" opacity=".3"/><circle cx="18" cy="45" r="1" fill="#817450" opacity=".3"/><circle cx="70" cy="15" r="1" fill="#817450" opacity=".3"/></pattern>
 <pattern id="sea" width="80" height="40" patternUnits="userSpaceOnUse"><path d="M0 10 Q20 0 40 10 T80 10 M0 30 Q20 20 40 30 T80 30" fill="none" stroke="#3e818d" stroke-width="1.3" opacity=".55"/></pattern>
-<g id="tree"><path d="M0 0 l-10 15 8-2 -9 13 20 0 -9-13 8 2z" fill="#4e7954" stroke="#294632" stroke-width="1"/><path d="M0 25v7" stroke="#5b4730" stroke-width="3"/></g>
-<g id="mountain"><path d="M-28 35 L-5-15 5 5 18-24 38 35Z" fill="#8c8270" stroke="#4f4b3b" stroke-width="2"/><path d="M-5-15 0 0 -8 8 5 5 18-24 10-4 20 10 8 7" fill="#d9d0b6" stroke="#77715f" stroke-width="1"/></g>
+<g id="tree"><path d="M0 0 l-10 15 8-2 -9 13 20 0 -9-13 8 2z" fill="#28e66b" stroke="#14572c" stroke-width="1"/><path d="M0 25v7" stroke="#5b4730" stroke-width="3"/></g>
+<g id="mountain"><path d="M-28 35 L-5-15 5 5 18-24 38 35Z" fill="#b7a9ff" stroke="#51436c" stroke-width="2"/><path d="M-5-15 0 0 -8 8 5 5 18-24 10-4 20 10 8 7" fill="#fff5a5" stroke="#7d70a0" stroke-width="1"/></g>
 <g id="castle"><path d="M-25 20V-8h10v-17h12v17h8v-24h12v24h10v28z" fill="#79674b" stroke="#463923" stroke-width="2"/><path d="M-25-8h10v-17h12v17h8v-24h12v24h10v28h-52z" fill="none" stroke="#443a27" stroke-width="2"/><path d="M-7 20V4Q0-7 7 4V20" fill="#342b20"/></g>
 <g id="tower"><path d="M-14 25V-15H14V25Z" fill="#77684c" stroke="#453b29" stroke-width="2"/><path d="M-18-15 0-36 18-15Z" fill="#4e4935" stroke="#453b29" stroke-width="2"/><rect x="-4" y="-5" width="8" height="12" fill="#d3b77b"/></g>
 <g id="ship"><path d="M-24 0H24L14 14H-14Z" fill="#675239" stroke="#382e20" stroke-width="2"/><path d="M0-35V0 M0-30L20-6H0Z M-1-28L-18-8H-1Z" fill="#e0d2aa" stroke="#645238"/></g>
 </defs>
 <rect width="1500" height="1000" fill="url(#sea)"/><rect width="1500" height="1000" fill="url(#paper)" opacity=".28"/><path d="M0 430 Q120 390 210 450 T390 460 Q470 520 400 600 T220 700 Q90 660 0 740Z" fill="#82b5b4" opacity=".45"/><path d="M690 0 Q770 80 720 160 T770 280 Q820 330 790 420 T840 530 Q900 620 850 730 T930 900 L1000 1000 L650 1000 Q720 900 670 820 T620 680 Q570 600 630 500 T610 350 Q570 230 650 150Z" fill="#72a7aa" opacity=".42"/><path d="M960 520 Q1050 470 1110 520 T1250 550 Q1320 600 1270 680 T1150 740 Q1060 700 1020 640Z" fill="#8ab8b5" opacity=".55"/>
 <!-- coastlines and land -->
-<path d="M80 120 Q190 70 300 115 T500 105 Q600 135 660 205 Q720 250 680 325 Q650 400 570 420 Q520 460 460 430 Q380 470 300 410 Q230 390 180 330 Q90 280 80 120Z" fill="#d8c18e" stroke="#716449" stroke-width="5"/>
-<path d="M770 80 Q890 55 1020 100 Q1140 80 1300 180 Q1400 260 1350 380 Q1330 470 1250 490 Q1150 550 1060 490 Q980 530 900 460 Q800 410 760 320 Q720 200 770 80Z" fill="#d7c394" stroke="#716449" stroke-width="5"/>
-<path d="M180 500 Q250 460 360 500 Q450 550 440 650 Q430 760 330 820 Q230 850 170 760 Q90 670 180 500Z" fill="#c9bd91" stroke="#716449" stroke-width="5"/>
+<path d="M80 120 Q190 70 300 115 T500 105 Q600 135 660 205 Q720 250 680 325 Q650 400 570 420 Q520 460 460 430 Q380 470 300 410 Q230 390 180 330 Q90 280 80 120Z" fill="#f4d45f" stroke="#b97835" stroke-width="5"/>
+<path d="M770 80 Q890 55 1020 100 Q1140 80 1300 180 Q1400 260 1350 380 Q1330 470 1250 490 Q1150 550 1060 490 Q980 530 900 460 Q800 410 760 320 Q720 200 770 80Z" fill="#b8f05b" stroke="#b97835" stroke-width="5"/>
+<path d="M180 500 Q250 460 360 500 Q450 550 440 650 Q430 760 330 820 Q230 850 170 760 Q90 670 180 500Z" fill="#ffb65c" stroke="#b97835" stroke-width="5"/>
 <path d="M620 560 Q730 500 850 550 Q940 620 900 750 Q850 850 730 850 Q620 810 590 700 Q570 620 620 560Z" fill="#c9bd91" stroke="#716449" stroke-width="5"/>
 <path d="M1040 620 Q1150 580 1290 650 Q1400 730 1300 850 Q1200 930 1080 860 Q980 780 1040 620Z" fill="#c9bd91" stroke="#716449" stroke-width="5"/>
-<!-- soft watercolor terrain --><path d="M110 150 Q210 95 330 150 T500 180 Q560 260 500 330 Q400 380 300 350 T150 290Z" fill="#b5c58c" opacity=".42"/><path d="M820 120 Q950 90 1080 150 T1260 240 Q1280 330 1180 400 T950 400 Q850 330 820 220Z" fill="#c5b88c" opacity=".38"/><path d="M190 550 Q300 490 390 570 T380 740 Q260 800 180 700Z" fill="#a8bd8b" opacity=".42"/><path d="M640 600 Q750 530 850 600 T850 760 Q740 820 650 750Z" fill="#b7c49a" opacity=".4"/><!-- forest patches -->
+<!-- soft watercolor terrain --><path d="M110 150 Q210 95 330 150 T500 180 Q560 260 500 330 Q400 380 300 350 T150 290Z" fill="#c4ff54" opacity=".55"/><path d="M820 120 Q950 90 1080 150 T1260 240 Q1280 330 1180 400 T950 400 Q850 330 820 220Z" fill="#ffed6b" opacity=".48"/><path d="M190 550 Q300 490 390 570 T380 740 Q260 800 180 700Z" fill="#ff83cf" opacity=".4"/><path d="M640 600 Q750 530 850 600 T850 760 Q740 820 650 750Z" fill="#78ffca" opacity=".45"/><!-- forest patches -->
 <g opacity=".9"><use href="#tree" x="230" y="210"/><use href="#tree" x="270" y="250"/><use href="#tree" x="300" y="220"/><use href="#tree" x="350" y="270"/><use href="#tree" x="390" y="220"/><use href="#tree" x="420" y="290"/><use href="#tree" x="240" y="300"/><use href="#tree" x="320" y="320"/><use href="#tree" x="390" y="340"/><use href="#tree" x="450" y="250"/>
 <use href="#tree" x="1080" y="230"/><use href="#tree" x="1120" y="270"/><use href="#tree" x="1180" y="230"/><use href="#tree" x="1230" y="300"/><use href="#tree" x="1280" y="250"/><use href="#tree" x="1090" y="340"/><use href="#tree" x="1170" y="360"/><use href="#tree" x="1250" y="390"/>
 <use href="#tree" x="220" y="620"/><use href="#tree" x="280" y="660"/><use href="#tree" x="340" y="620"/><use href="#tree" x="390" y="700"/><use href="#tree" x="300" y="740"/><use href="#tree" x="1100" y="760"/><use href="#tree" x="1170" y="800"/><use href="#tree" x="1260" y="750"/></g>
@@ -60,8 +60,8 @@ footer{text-align:center;padding:24px;border-top:1px solid #5b604c;color:#9c997e
 <g><use href="#mountain" x="520" y="170"/><use href="#mountain" x="570" y="190"/><use href="#mountain" x="620" y="155"/><use href="#mountain" x="660" y="220"/><use href="#mountain" x="720" y="180"/><use href="#mountain" x="780" y="230"/><use href="#mountain" x="830" y="190"/><use href="#mountain" x="870" y="230"/><use href="#mountain" x="900" y="180"/><use href="#mountain" x="930" y="260"/>
 <use href="#mountain" x="510" y="700"/><use href="#mountain" x="560" y="730"/><use href="#mountain" x="610" y="680"/><use href="#mountain" x="650" y="760"/><use href="#mountain" x="700" y="700"/></g>
 <!-- roads and waterways -->
-<g fill="none" stroke="#8b714b" stroke-width="4" stroke-dasharray="2 10" stroke-linecap="round"><path d="M360 360 C470 380 500 470 620 440 S820 420 980 360 S1140 450 1180 550"/><path d="M320 650 C440 570 510 570 650 650 S900 700 1120 720"/><path d="M600 280 Q700 370 760 500 T750 780"/></g>
-<g fill="none" stroke="#718c8a" stroke-width="5" opacity=".8"><path d="M450 140 Q420 260 500 350 T470 470"/><path d="M930 100 Q1000 210 930 330 T1000 500"/></g>
+<g fill="none" stroke="#ff7b45" stroke-width="4" stroke-dasharray="2 10" stroke-linecap="round"><path d="M360 360 C470 380 500 470 620 440 S820 420 980 360 S1140 450 1180 550"/><path d="M320 650 C440 570 510 570 650 650 S900 700 1120 720"/><path d="M600 280 Q700 370 760 500 T750 780"/></g>
+<g fill="none" stroke="#27f0d0" stroke-width="5" opacity=".9"><path d="M450 140 Q420 260 500 350 T470 470"/><path d="M930 100 Q1000 210 930 330 T1000 500"/></g>
 <!-- region titles -->
 <text class="region" x="365" y="145" text-anchor="middle">THE STORYWOOD</text><text class="region" x="1110" y="130" text-anchor="middle">THE WILDS OF WONDER</text><text class="region" x="310" y="540" text-anchor="middle">THE CREATIVE COAST</text><text class="region" x="750" y="900" text-anchor="middle">THE SCHOLAR'S RANGE</text><text class="region" x="1190" y="600" text-anchor="middle">THE OUTER REALMS</text>
 <!-- iconic locations -->
@@ -91,8 +91,8 @@ footer{text-align:center;padding:24px;border-top:1px solid #5b604c;color:#9c997e
 <g class="place" data-name="The Games District" transform="translate(-20 15)" data-desc="Games, worlds, mechanics, lore, challenges, and interactive ideas."><text class="label" x="1320" y="710">Games District</text><text class="small" x="1320" y="732">Worlds to play in</text></g>
 <g class="place" data-name="The Great Questions" transform="translate(20 25)" data-desc="The questions that connect everything: what is reality, what is life, how do we know, and what should we do?"><text class="label" x="850" y="820">The Great Questions</text></g>
 <!-- water flourishes --><g opacity=".7"><use href="#wave" x="90" y="470"/><use href="#wave" x="120" y="485"/><use href="#wave" x="480" y="520"/><use href="#wave" x="1000" y="570"/><use href="#wave" x="1300" y="520"/><use href="#wave" x="1380" y="600"/><use href="#wave" x="950" y="900"/><use href="#wave" x="450" y="880"/><use href="#wave" x="100" y="900"/></g><!-- decorative cartography -->
-<g fill="none" stroke="#69583b" stroke-width="1.5" opacity=".7"><path d="M100 430 Q200 460 280 420 T450 440"/><path d="M950 560 Q1050 580 1150 540 T1350 560"/><circle cx="750" cy="500" r="80" stroke-dasharray="4 8"/><circle cx="750" cy="500" r="110" stroke-dasharray="2 10"/></g>
-<g transform="translate(1400 100)"><circle r="60" fill="none" stroke="#55452e" stroke-width="2"/><circle r="45" fill="none" stroke="#55452e"/><path d="M0-75 10-10 0 0 -10-10Z" fill="#4a3b25"/><path d="M0 75 10 10 0 0 -10 10Z" fill="#8b754e"/><path d="M-75 0 -10 10 0 0 -10-10Z" fill="#8b754e"/><path d="M75 0 10 10 0 0 10-10Z" fill="#4a3b25"/><text class="compass" y="-85">N</text><text class="compass" y="102">S</text><text class="compass" x="92" y="8">E</text><text class="compass" x="-92" y="8">W</text></g>
+<g fill="none" stroke="#e9b94d" stroke-width="1.8" opacity=".85"><path d="M100 430 Q200 460 280 420 T450 440"/><path d="M950 560 Q1050 580 1150 540 T1350 560"/><circle cx="750" cy="500" r="80" stroke-dasharray="4 8"/><circle cx="750" cy="500" r="110" stroke-dasharray="2 10"/></g>
+<g transform="translate(1400 100)"><circle r="60" fill="none" stroke="#e9b94d" stroke-width="2"/><circle r="45" fill="none" stroke="#55452e"/><path d="M0-75 10-10 0 0 -10-10Z" fill="#e9b94d"/><path d="M0 75 10 10 0 0 -10 10Z" fill="#e9b94d"/><path d="M-75 0 -10 10 0 0 -10-10Z" fill="#8b754e"/><path d="M75 0 10 10 0 0 10-10Z" fill="#4a3b25"/><text class="compass" y="-85">N</text><text class="compass" y="102">S</text><text class="compass" x="92" y="8">E</text><text class="compass" x="-92" y="8">W</text></g>
 <text class="map-note" x="750" y="970">The map is incomplete by design. There are always more worlds to discover.</text>
 </svg></div><div class="frame-caption"><span>✦ THE KNOWN REALMS ✦</span><span>Cartography is never finished.</span></div></div>
 <section class="instructions"><strong>Choose a place and begin wandering.</strong><div>Every landmark is a doorway. Some are already full of things; others are waiting to be built.</div><div class="legend"><span>✦ Knowledge</span><span>♧ Creativity</span><span>⌁ Exploration</span><span>◈ Uncharted</span></div></section>
