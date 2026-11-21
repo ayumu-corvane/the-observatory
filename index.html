@@ -27,9 +27,19 @@ h1{font-family:'Uncial Antiqua',serif;font-size:clamp(35px,6vw,70px);font-weight
 .instructions{text-align:center;color:#d8c69b;padding:36px 15px 50px;font-size:18px}.instructions strong{font-family:'IM Fell English',serif;font-size:24px;font-weight:400}
 .legend{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:15px}.legend span{border:1px solid #6d674f;padding:6px 12px;color:#c7b991;font-size:12px}
 footer{text-align:center;padding:24px;border-top:1px solid #5b604c;color:#9c997e;font-size:12px;letter-spacing:.12em}
-.modal{position:fixed;inset:0;background:rgba(5,10,7,.78);display:none;place-items:center;z-index:20;padding:20px;}.modal.open{display:grid}
-.panel{max-width:540px;width:100%;padding:36px;background:#d7c69d;border:5px double #67543a;box-shadow:0 20px 70px #000;position:relative;text-align:center}
-.panel h2{font-family:'Uncial Antiqua',serif;font-size:32px;font-weight:400;margin:5px 0 14px}.panel p{font-size:20px;line-height:1.5}.panel .stamp{font-size:12px;letter-spacing:.2em;text-color:#716045}.close{position:absolute;right:12px;top:12px;background:none;border:0;font-size:26px;cursor:pointer;color:#453724}.panel .coming{display:inline-block;margin-top:10px;border-top:1px solid #8b7754;padding-top:14px;font-style:italic;color:#6d5a3e}
+.location-view{position:fixed;inset:0;z-index:50;display:none;overflow:auto;background:#17241e;color:#d9c79e;padding:clamp(12px,3vw,36px)}.location-view.open{display:block}
+.location-shell{max-width:1180px;margin:auto;border:1px solid #8d774e;background:#24362b;box-shadow:0 20px 70px #050b08;min-height:calc(100vh - 2*clamp(12px,3vw,36px))}
+.location-top{padding:22px 28px;border-bottom:1px solid #8d774e;display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}
+.back-map,.location-action{font-family:'Crimson Text',serif;font-size:17px;background:#d7c69d;color:#30291d;border:2px solid #786345;padding:9px 16px;cursor:pointer}
+.location-hero{padding:clamp(28px,6vw,70px);text-align:center;background:linear-gradient(135deg,#263b2e,#18251e);border-bottom:1px solid #8d774e}
+.location-kicker{letter-spacing:.2em;font-size:12px;color:#b8a478}.location-hero h2{font-family:'Uncial Antiqua',serif;font-weight:400;font-size:clamp(30px,5vw,58px);color:#d4af37;margin:18px 0}.location-hero p{max-width:700px;margin:auto;font-size:22px;line-height:1.5;color:#d9c79e}
+.location-nav{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;padding:18px;border-bottom:1px solid #6d674f}
+.location-nav button{background:transparent;color:#d9c79e;border:1px solid #776445;padding:8px 18px;font-family:inherit;font-size:16px;cursor:pointer}.location-nav button.active{background:#d7c69d;color:#30291d}
+.location-content{padding:clamp(18px,4vw,42px)}.section-title{font-family:'Uncial Antiqua',serif;font-size:27px;font-weight:400;color:#d4af37;margin:0 0 8px}.section-intro{font-size:18px;color:#c7b991;margin:0 0 25px}
+.location-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}.location-card{background:#d7c69d;color:#30291d;border:2px solid #786345;padding:20px;min-height:150px}.location-card h3{font-family:'IM Fell English',serif;font-size:23px;margin:0 0 10px}.location-card p{font-size:17px;line-height:1.4;margin:0}.location-card .card-meta{font-size:12px;letter-spacing:.12em;margin-bottom:8px;color:#6d5a3e}
+.entry-form{margin-top:28px;padding:20px;border:1px solid #786345;background:#1b2a21}.entry-form input,.entry-form textarea{width:100%;margin:7px 0;padding:10px;background:#d7c69d;border:1px solid #786345;color:#30291d;font-family:inherit;font-size:17px}.entry-form textarea{min-height:90px;resize:vertical}.entry-form button{margin-top:8px}.entry-list{margin-top:20px}.empty-state{border:1px dashed #8d774e;padding:28px;text-align:center;font-style:italic;font-size:18px;color:#c7b991}
+.location-footer{padding:20px;text-align:center;border-top:1px solid #6d674f;color:#9c997e;font-size:12px;letter-spacing:.12em}
+@media(max-width:650px){.location-top{padding:14px}.location-hero{padding:28px 18px}.location-content{padding:18px}.location-nav{gap:5px}.location-nav button{padding:7px 10px}}
 @media(max-width:650px){.shell{padding:7px}.map-frame{padding:4px}.topline{gap:10px;font-size:9px}.frame-caption{font-size:11px}.instructions{padding:25px 10px}.map{min-width:800px}.map-frame{overflow:auto}.map-frame:after{content:'← Scroll across the map →';position:sticky;left:0;display:block;text-align:center;font-size:12px;color:#55462f;padding:6px}}
 </style>
 </head>
@@ -98,14 +108,12 @@ footer{text-align:center;padding:24px;border-top:1px solid #5b604c;color:#9c997e
 <section class="instructions"><strong>Choose a place and begin wandering.</strong><div>Every landmark is a doorway. Some are already full of things; others are waiting to be built.</div><div class="legend"><span>✦ Knowledge</span><span>♧ Creativity</span><span>⌁ Exploration</span><span>◈ Uncharted</span></div></section>
 </main>
 <footer>THE OBSERVATORY · A MAP OF CURIOSITY · DRAWN IN PROGRESS</footer>
-<div class="modal" id="modal" role="dialog" aria-modal="true"><div class="panel"><button class="close" aria-label="Close">×</button><div class="stamp">A place on the map</div><h2 id="modal-title"></h2><p id="modal-desc"></p><div class="coming">This corner of the world is being charted...</div></div></div>
+<div class="location-view" id="location-view" role="dialog" aria-modal="true"><div class="location-shell"><div class="location-top"><button class="back-map" id="back-map">← Return to the map</button><span class="location-kicker">THE OBSERVATORY · A PLACE ON THE MAP</span></div><header class="location-hero"><div class="location-kicker" id="location-kicker"></div><h2 id="location-title"></h2><p id="location-desc"></p></header><nav class="location-nav" id="location-nav"><button class="active" data-tab="overview">Overview</button><button data-tab="collection">Collections</button><button data-tab="notes">Field notes</button></nav><main class="location-content" id="location-content"></main><footer class="location-footer">THE OBSERVATORY · YOUR WORLD, STILL UNFOLDING</footer></div></div>
 <script>
-const modal=document.getElementById('modal');
 const map=document.querySelector('.map');
 const places=[...document.querySelectorAll('.place')];
 const STORAGE_KEY='observatory-map-positions-v1';
 let saved={};try{saved=JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}')}catch{}
-// Make individual trees and mountains draggable—not entire forests or mountain ranges.
 const COMPONENT_KEY='observatory-map-components-v2';
 let componentPositions={};try{componentPositions=JSON.parse(localStorage.getItem(COMPONENT_KEY)||'{}')}catch{}
 const mapComponents=[...map.querySelectorAll('use[href="#tree"],use[href="#mountain"]')];
@@ -114,53 +122,99 @@ mapComponents.forEach((component,index)=>{
   if(componentPositions[key])component.setAttribute('transform',componentPositions[key]);
   let dragging=false,startX=0,startY=0,baseX=0,baseY=0,originalTransform='';
   component.style.cursor='grab';
-  component.addEventListener('pointerdown',e=>{
-    if(e.button!==0)return;
-    e.stopPropagation();
-    const matrix=component.transform.baseVal.consolidate()?.matrix;
-    startX=e.clientX;startY=e.clientY;baseX=matrix?.e||0;baseY=matrix?.f||0;
-    originalTransform=component.getAttribute('transform')||'';
-    dragging=true;component.setPointerCapture(e.pointerId);
-  });
-  component.addEventListener('pointermove',e=>{
-    if(!dragging)return;
-    const rect=map.getBoundingClientRect(),dx=(e.clientX-startX)*1500/rect.width,dy=(e.clientY-startY)*1000/rect.height;
-    if(Math.abs(dx)+Math.abs(dy)>3){component.setAttribute('transform',`translate(${baseX+dx} ${baseY+dy}) ${originalTransform}`.trim());component.style.cursor='grabbing';}
-  });
-  component.addEventListener('pointerup',e=>{
-    if(!dragging)return;dragging=false;component.style.cursor='grab';
-    const current=component.getAttribute('transform')||'';
-    if(current!==originalTransform){componentPositions[key]=current;localStorage.setItem(COMPONENT_KEY,JSON.stringify(componentPositions));}
-  });
+  component.addEventListener('pointerdown',e=>{if(e.button!==0)return;e.stopPropagation();const matrix=component.transform.baseVal.consolidate()?.matrix;startX=e.clientX;startY=e.clientY;baseX=matrix?.e||0;baseY=matrix?.f||0;originalTransform=component.getAttribute('transform')||'';dragging=true;component.setPointerCapture(e.pointerId);});
+  component.addEventListener('pointermove',e=>{if(!dragging)return;const rect=map.getBoundingClientRect(),dx=(e.clientX-startX)*1500/rect.width,dy=(e.clientY-startY)*1000/rect.height;if(Math.abs(dx)+Math.abs(dy)>3){component.setAttribute('transform',`translate(${baseX+dx} ${baseY+dy}) ${originalTransform}`.trim());component.style.cursor='grabbing';}});
+  component.addEventListener('pointerup',()=>{if(!dragging)return;dragging=false;component.style.cursor='grab';const current=component.getAttribute('transform')||'';if(current!==originalTransform){componentPositions[key]=current;localStorage.setItem(COMPONENT_KEY,JSON.stringify(componentPositions));}});
   component.addEventListener('pointercancel',()=>{dragging=false;component.style.cursor='grab';});
 });
+const view=document.getElementById('location-view'),content=document.getElementById('location-content');
+const entryKey='observatory-location-entries-v1';
+let entries={};try{entries=JSON.parse(localStorage.getItem(entryKey)||'{}')}catch{}
+const descriptions={
+'The Library':'A vast, ever-expanding library. Books, notes, knowledge, discoveries, and anything worth keeping.',
+'Manga Forest':'A forest of panels, volumes, characters, worlds, and stories waiting to be read.',
+'The OC Atelier':'The workshop where original characters are born, redesigned, developed, and occasionally cause chaos.',
+'Character Forge':'A forge for personalities, designs, quirks, backstories, relationships, and characters who refuse to behave.',
+'Storylands':'A continent of plots, manga ideas, novels, scenes, worlds, and narrative experiments.',
+'Philosophers\' Coast':'Questions about existence, ethics, society, meaning, nature, and all those thoughts that refuse to leave at 2 AM.',
+'The Universe':'Cosmology, galaxies, stars, black holes, origins, endings, and the immense things we don\'t yet know.',
+'Space':'Spaceflight, exploration, spacecraft, missions, orbital mechanics, and humanity\'s next steps beyond Earth.',
+'Physics':'The laws, symmetries, forces, and beautiful machinery underlying reality.',
+'Maths':'Patterns, proofs, olympiad problems, abstractions, and the language of structure.',
+'Linguistics':'Languages, etymology, writing systems, grammar, sounds, and the ways humans shape meaning.',
+'Art':'Sketches, visual ideas, design, illustration, aesthetics, and experiments with shape and colour.',
+'The Music Isles':'Songs, musical ideas, rhythms, moods, and soundtracks to imaginary places.',
+'The Cinema':'Films, animation, visual storytelling, scenes, and the art of making a world feel real.',
+'Nature Sanctuary':'Animals, plants, ecosystems, environmental ideas, and the living world worth protecting.',
+'History':'Civilizations, people, events, inventions, and the long, messy story of humanity.',
+'Myth & Legend':'Mythologies, folklore, legendary creatures, ancient beliefs, and stories that outlived their origins.',
+'Dream Observatory':'Dreams, lucid dreaming, surreal experiences, imagination, and the strange landscape of sleep.',
+'The Archive':'An archive of personal notes, memories, ideas, references, and things that should not be lost.',
+'The Inventors\' Guild':'Projects, experiments, prototypes, websites, inventions, and things being built simply because they can be.',
+'The Garden of Ideas':'Random thoughts, sparks, concepts, questions, and seeds of projects that may grow into something huge.',
+'The Language Bazaar':'Languages being learned, phrases collected, translations, vocabulary, and cross-cultural discoveries.',
+'The Uncharted':'A deliberately blank region. Interests, discoveries, and future obsessions will find their place here.',
+'The Games District':'Games, worlds, mechanics, lore, challenges, and interactive ideas.',
+'The Great Questions':'The questions that connect everything: what is reality, what is life, how do we know, and what should we do?'
+};
+const sectionNames={
+'The Library':['Bookshelf','Reading list','Quotes & passages'],
+'Manga Forest':['Series trail','Favourite chapters','Characters'],
+'The OC Atelier':['Character concepts','Design sketches','Creation notes'],
+'Character Forge':['Character files','Traits & abilities','Relationships'],
+'Storylands':['Worlds','Plot threads','Scenes'],
+'Philosophers\' Coast':['Questions','Arguments','Thought experiments'],
+'The Universe':['Cosmic objects','Concepts','Discoveries'],
+'Space':['Missions','Spacecraft','Engineering notes'],
+'Physics':['Concepts','Problems','Thought experiments'],
+'Maths':['Problems','Proofs','Patterns'],
+'Linguistics':['Languages','Word discoveries','Writing systems'],
+'Art':['Sketchbook','Studies','Ideas'],
+'The Music Isles':['Songs','Playlists','Musical ideas'],
+'The Cinema':['Films','Scenes','Reviews'],
+'Nature Sanctuary':['Species','Observations','Conservation ideas'],
+'History':['Events','People','Civilizations'],
+'Myth & Legend':['Mythologies','Creatures','Stories'],
+'Dream Observatory':['Dream logs','Lucid dreams','Dream experiments'],
+'The Archive':['Saved fragments','References','Personal notes'],
+'The Inventors\' Guild':['Projects','Experiments','Build log'],
+'The Garden of Ideas':['Seeds','Developing ideas','Wild thoughts'],
+'The Language Bazaar':['Vocabulary','Useful phrases','Learning notes'],
+'The Uncharted':['New discoveries','Potential interests','Random encounters'],
+'The Games District':['Games','Worlds & lore','Mechanics'],
+'The Great Questions':['Questions','Possible answers','Open mysteries']
+};
+let activePlace='';
+function escapeHTML(value){return String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function openLocation(name,desc){
+ activePlace=name;document.getElementById('location-title').textContent=name;document.getElementById('location-desc').textContent=desc||descriptions[name]||'A new corner of the Observatory, ready to be explored.';
+ document.getElementById('location-kicker').textContent=(name.toUpperCase()+' · OPENING THE ATLAS').slice(0,80);
+ view.classList.add('open');renderTab('overview');document.querySelectorAll('#location-nav button').forEach(b=>b.classList.toggle('active',b.dataset.tab==='overview'));
+}
+function renderTab(tab){
+ const labels=sectionNames[activePlace]||['Collected items','Ideas','Notes'];
+ const savedItems=entries[activePlace]||[];
+ if(tab==='overview'){
+ content.innerHTML=`<h3 class="section-title">Welcome to ${escapeHTML(activePlace)}</h3><p class="section-intro">This is your own corner of the atlas. Explore, collect, create, and let it grow.</p><div class="location-grid"><article class="location-card"><div class="card-meta">YOUR SPACE</div><h3>${escapeHTML(labels[0])}</h3><p>A place to gather everything belonging here.</p></article><article class="location-card"><div class="card-meta">EXPLORE</div><h3>${escapeHTML(labels[1])}</h3><p>Follow curiosities, discoveries, and unfinished trails.</p></article><article class="location-card"><div class="card-meta">KEEP</div><h3>${escapeHTML(labels[2])}</h3><p>Record the things you want to remember.</p></article></div><div style="margin-top:26px"><button class="location-action" data-goto="collection">Open your collections →</button></div>`;
+ }else if(tab==='collection'){
+ content.innerHTML=`<h3 class="section-title">${escapeHTML(labels[0])}</h3><p class="section-intro">Your collection in this location. Add an entry and it will stay saved in this browser.</p><div class="entry-list">${savedItems.length?savedItems.map((item,i)=>`<article class="location-card" style="margin-bottom:12px"><div class="card-meta">ENTRY ${i+1}</div><h3>${escapeHTML(item.title)}</h3><p>${escapeHTML(item.body)}</p><button class="location-action" style="margin-top:12px" data-delete="${i}">Remove entry</button></article>`).join(''):'<div class="empty-state">Nothing has been collected here yet. The first discovery is yours.</div>'}</div><form class="entry-form" id="entry-form"><h3 class="section-title">Add something to this place</h3><input name="title" placeholder="Title / name" required maxlength="100"><textarea name="body" placeholder="Description, details, thoughts, links to remember..." required maxlength="3000"></textarea><button class="location-action" type="submit">Save to this location</button></form>`;
+ }else{
+ content.innerHTML=`<h3 class="section-title">${escapeHTML(labels[2])}</h3><p class="section-intro">Loose thoughts, observations, questions, and things you don't want to lose.</p><div class="entry-list">${savedItems.length?savedItems.map((item,i)=>`<article class="location-card" style="margin-bottom:12px"><div class="card-meta">FIELD NOTE ${i+1}</div><h3>${escapeHTML(item.title)}</h3><p>${escapeHTML(item.body)}</p></article>`).join(''):'<div class="empty-state">The pages are blank—for now. Leave the first field note.</div>'}</div><form class="entry-form" id="entry-form"><h3 class="section-title">Write a field note</h3><input name="title" placeholder="A note's title" required maxlength="100"><textarea name="body" placeholder="Write anything you wish to keep..." required maxlength="3000"></textarea><button class="location-action" type="submit">Save field note</button></form>`;
+ }
+ content.querySelectorAll('[data-goto]').forEach(b=>b.onclick=()=>{document.querySelector('#location-nav button[data-tab="collection"]').click()});
+ content.querySelectorAll('[data-delete]').forEach(b=>b.onclick=()=>{savedItems.splice(Number(b.dataset.delete),1);entries[activePlace]=savedItems;localStorage.setItem(entryKey,JSON.stringify(entries));renderTab(tab)});
+ const form=document.getElementById('entry-form');if(form)form.onsubmit=e=>{e.preventDefault();const fd=new FormData(form);entries[activePlace]=entries[activePlace]||[];entries[activePlace].push({title:fd.get('title'),body:fd.get('body')});localStorage.setItem(entryKey,JSON.stringify(entries));renderTab(tab);};
+}
+document.querySelectorAll('#location-nav button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#location-nav button').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderTab(b.dataset.tab)});
+document.getElementById('back-map').onclick=()=>view.classList.remove('open');
 places.forEach(place=>{
-  const name=place.dataset.name;
-  if(saved[name])place.setAttribute('transform',saved[name]);
-  let dragging=false,moved=false,startX=0,startY=0,baseX=0,baseY=0;
-  place.addEventListener('pointerdown',e=>{
-    if(e.button!==0)return;
-    const matrix=place.transform.baseVal.consolidate()?.matrix;
-    if(!matrix)return;
-    startX=e.clientX;startY=e.clientY;baseX=matrix.e;baseY=matrix.f;
-    dragging=true;moved=false;place.setPointerCapture(e.pointerId);
-  });
-  place.addEventListener('pointermove',e=>{
-    if(!dragging)return;
-    const rect=map.getBoundingClientRect(),scaleX=1500/rect.width,scaleY=1000/rect.height;
-    const dx=(e.clientX-startX)*scaleX,dy=(e.clientY-startY)*scaleY;
-    if(Math.abs(dx)+Math.abs(dy)>4)moved=true;
-    if(moved)place.setAttribute('transform',`translate(${baseX+dx} ${baseY+dy})`);
-  });
-  place.addEventListener('pointerup',e=>{
-    if(!dragging)return;dragging=false;
-    if(moved){saved[name]=place.getAttribute('transform');localStorage.setItem(STORAGE_KEY,JSON.stringify(saved));}
-    else{document.getElementById('modal-title').textContent=name;document.getElementById('modal-desc').textContent=place.dataset.desc;modal.classList.add('open');}
-  });
-  place.addEventListener('pointercancel',()=>dragging=false);
+ const name=place.dataset.name;if(saved[name])place.setAttribute('transform',saved[name]);
+ let dragging=false,moved=false,startX=0,startY=0,baseX=0,baseY=0;
+ place.addEventListener('pointerdown',e=>{if(e.button!==0)return;const matrix=place.transform.baseVal.consolidate()?.matrix;if(!matrix)return;startX=e.clientX;startY=e.clientY;baseX=matrix.e;baseY=matrix.f;dragging=true;moved=false;place.setPointerCapture(e.pointerId);});
+ place.addEventListener('pointermove',e=>{if(!dragging)return;const rect=map.getBoundingClientRect(),dx=(e.clientX-startX)*1500/rect.width,dy=(e.clientY-startY)*1000/rect.height;if(Math.abs(dx)+Math.abs(dy)>4)moved=true;if(moved)place.setAttribute('transform',`translate(${baseX+dx} ${baseY+dy})`);});
+ place.addEventListener('pointerup',()=>{if(!dragging)return;dragging=false;if(moved){saved[name]=place.getAttribute('transform');localStorage.setItem(STORAGE_KEY,JSON.stringify(saved));}else openLocation(name,place.dataset.desc);});
+ place.addEventListener('pointercancel',()=>dragging=false);
 });
-document.querySelector('.close').onclick=()=>modal.classList.remove('open');
-modal.addEventListener('click',e=>{if(e.target===modal)modal.classList.remove('open')});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')modal.classList.remove('open')});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&view.classList.contains('open'))view.classList.remove('open')});
 </script>
 </body></html>
