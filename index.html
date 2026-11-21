@@ -1,77 +1,105 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#070b15">
-<meta name="description" content="The Observatory — an archive of everything that has yet to be understood.">
-<title>The Observatory — A universe of questions</title>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#18241d">
+<title>The Observatory — Atlas of a Curious Mind</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap');
-:root{--bg:#070b15;--ink:#e9edf5;--muted:#8490a6;--line:rgba(165,185,220,.14);--blue:#a9c8ff;--gold:#d8b98a}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Manrope, sans-serif;overflow-x:hidden}
-#stars,#stars2{position:fixed;inset:0;pointer-events:none;z-index:-2;background-repeat:repeat}
-#stars{background-image:radial-gradient(1px 1px at 18px 28px,#d7e4ff 99%,transparent),radial-gradient(1px 1px at 82px 110px,#fff 99%,transparent),radial-gradient(1px 1px at 145px 61px,#9bb7e8 99%,transparent),radial-gradient(1px 1px at 211px 172px,#fff 99%,transparent);background-size:260px 220px;opacity:.52;animation:drift 90s linear infinite}
-#stars2{background-image:radial-gradient(1.5px 1.5px at 40px 70px,#d9e8ff 99%,transparent),radial-gradient(1px 1px at 190px 30px,#c3d4ff 99%,transparent),radial-gradient(1px 1px at 300px 150px,#fff 99%,transparent);background-size:370px 280px;opacity:.28;animation:drift 150s linear infinite reverse}
-body:before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 50% 25%,rgba(48,76,132,.24),transparent 52%),radial-gradient(ellipse at 8% 70%,rgba(52,45,100,.12),transparent 40%),linear-gradient(180deg,rgba(7,11,21,.2),#070b15 85%)}
-@keyframes drift{to{transform:translate3d(-260px,220px,0)}}
-a{color:inherit;text-decoration:none}.mono{font-family:'DM Mono',monospace;letter-spacing:.12em;text-transform:uppercase}
-.nav{position:relative;z-index:5;display:flex;align-items:center;justify-content:space-between;padding:30px clamp(24px,6vw,90px);border-bottom:1px solid var(--line)}
-.brand{display:flex;align-items:center;gap:12px;font-size:12px;letter-spacing:.22em;font-weight:600}.brand-mark{width:28px;height:28px;border:1px solid rgba(169,200,255,.5);border-radius:50%;position:relative}.brand-mark:before{content:"";position:absolute;inset:5px;border:1px solid var(--blue);border-radius:50%}.brand-mark:after{content:"";position:absolute;width:4px;height:4px;background:var(--gold);border-radius:50%;top:3px;right:4px}
-.navlinks{display:flex;gap:clamp(18px,3vw,42px);font-size:11px;color:#a4aec2;letter-spacing:.12em;text-transform:uppercase}.navlinks a{transition:color .25s}.navlinks a:hover{color:#fff}.navlinks a.future{opacity:.48;cursor:default}
-.hero{min-height:calc(100svh - 89px);display:grid;grid-template-columns:1.05fr .95fr;align-items:center;max-width:1440px;margin:auto;padding:60px clamp(24px,7vw,110px) 90px;gap:4vw}
-.eyebrow{color:var(--blue);font-size:10px;letter-spacing:.22em;text-transform:uppercase;display:flex;align-items:center;gap:12px}.eyebrow:before{content:"";width:28px;height:1px;background:var(--blue)}
-h1{font-size:clamp(54px,8vw,112px);font-weight:300;letter-spacing:-.065em;line-height:.94;margin:25px 0 22px}.hollow{color:transparent;-webkit-text-stroke:1px rgba(224,234,250,.72)}
-.tagline{font-family:'Playfair Display',serif;font-size:clamp(20px,2.2vw,29px);font-weight:400;color:#d2d9e7;line-height:1.4;max-width:520px}
-.intro{font-size:14px;line-height:1.9;color:var(--muted);max-width:440px;margin:24px 0 35px}
-.cta{display:inline-flex;align-items:center;gap:18px;border:1px solid rgba(169,200,255,.4);padding:15px 20px;font-size:10px;letter-spacing:.17em;text-transform:uppercase;transition:all .3s;background:rgba(111,146,208,.06)}.cta:hover{background:rgba(111,146,208,.16);border-color:var(--blue);transform:translateY(-2px)}.arrow{font-size:17px;color:var(--blue)}
-.visual{height:min(590px,65vw);min-height:360px;display:grid;place-items:center;position:relative}.planet{width:min(33vw,390px);aspect-ratio:1;border-radius:50%;position:relative;background:radial-gradient(circle at 32% 26%,#8a9bb8 0,#536782 12%,#283d5e 35%,#111b31 65%,#070b15 76%);box-shadow:inset -40px -30px 80px #03050c,0 0 90px rgba(88,126,190,.16);animation:planetfloat 7s ease-in-out infinite}.planet:before{content:"";position:absolute;inset:-8%;border-radius:50%;border:1px solid rgba(169,200,255,.13);box-shadow:0 0 35px rgba(108,154,220,.08)}.planet:after{content:"";position:absolute;inset:0;border-radius:50%;background:linear-gradient(140deg,transparent 38%,rgba(2,5,12,.55) 80%)}
-.orbit{position:absolute;width:125%;height:42%;border:1px solid rgba(185,208,245,.28);border-radius:50%;transform:rotate(-24deg)}.orbit2{position:absolute;width:145%;height:55%;border:1px solid rgba(185,208,245,.1);border-radius:50%;transform:rotate(34deg)}.orbit-dot{position:absolute;width:8px;height:8px;border-radius:50%;background:#e6cda8;box-shadow:0 0 14px #e6cda8;top:22%;left:17%}.visual-label{position:absolute;bottom:7%;right:0;color:#73819a;font-size:9px;line-height:1.9;text-align:right}
-.hero-bottom{position:absolute;bottom:28px;left:clamp(24px,7vw,110px);right:clamp(24px,7vw,110px);display:flex;justify-content:space-between;color:#66738a;font-size:9px;letter-spacing:.16em;text-transform:uppercase}
-.section{max-width:1440px;margin:auto;padding:100px clamp(24px,7vw,110px)}.section-head{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:45px}.section-kicker{font-size:10px;color:var(--blue);letter-spacing:.2em;text-transform:uppercase}.section-title{font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(35px,5vw,58px);margin:12px 0 0}.section-note{font-size:11px;color:var(--muted);max-width:230px;line-height:1.8}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{min-height:310px;border:1px solid var(--line);background:linear-gradient(145deg,rgba(25,36,58,.65),rgba(8,13,24,.7));padding:28px;position:relative;overflow:hidden;transition:transform .35s,border-color .35s,background .35s}.card:hover{transform:translateY(-6px);border-color:rgba(169,200,255,.38);background:linear-gradient(145deg,rgba(35,49,77,.8),rgba(8,13,24,.8))}.card:after{content:"";position:absolute;width:200px;height:200px;border-radius:50%;border:1px solid rgba(169,200,255,.07);right:-80px;bottom:-100px;transition:transform .5s}.card:hover:after{transform:scale(1.3)}
-.card-num{font-size:10px;color:#687891}.card-symbol{height:90px;display:grid;place-items:center;color:var(--blue);font-size:42px;font-weight:200}.card h3{font-family:'Playfair Display',serif;font-size:26px;font-weight:400;margin:6px 0 12px}.card p{font-size:12px;line-height:1.8;color:var(--muted);max-width:260px}.card-footer{position:absolute;bottom:25px;left:28px;right:28px;display:flex;justify-content:space-between;font-size:9px;color:#71819b;letter-spacing:.14em;text-transform:uppercase}
-.status{max-width:1440px;margin:0 auto;padding:0 clamp(24px,7vw,110px) 90px}.terminal{border:1px solid var(--line);background:rgba(5,9,17,.7);padding:24px 30px;display:grid;grid-template-columns:1.3fr repeat(3,1fr);gap:20px;align-items:center}.terminal-title{font-size:10px;letter-spacing:.18em;color:var(--blue);text-transform:uppercase}.stat{border-left:1px solid var(--line);padding-left:22px}.stat-label{font-size:9px;color:#75839b;letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px}.stat-value{font-family:'DM Mono',monospace;font-size:18px;color:#dbe5f7}
-footer{border-top:1px solid var(--line);padding:30px clamp(24px,6vw,90px);display:flex;justify-content:space-between;color:#5f6b80;font-size:9px;letter-spacing:.13em;text-transform:uppercase}
-@keyframes planetfloat{50%{transform:translateY(-9px)}}
-@media(max-width:850px){.nav{padding:22px 24px}.navlinks{gap:14px;font-size:9px}.hero{grid-template-columns:1fr;padding-top:70px;gap:0}.hero-copy{z-index:2}.visual{height:380px;min-height:0;margin-top:-30px}.planet{width:min(58vw,300px)}.hero-bottom{position:static;margin:0 24px 30px}.cards{grid-template-columns:1fr}.card{min-height:260px}.terminal{grid-template-columns:1fr 1fr}.terminal-title{grid-column:1/-1}.stat:nth-child(2){border:0;padding:0}footer{gap:15px;flex-wrap:wrap}}
-@media(max-width:520px){.brand{font-size:10px}.navlinks{gap:10px}.navlinks a:nth-child(4),.navlinks a:nth-child(5){display:none}h1{font-size:60px}.visual{height:300px}.section{padding-top:70px;padding-bottom:70px}.section-head{align-items:start;flex-direction:column}.terminal{padding:20px}.hero-bottom{font-size:8px}}
+@import url('https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Uncial+Antiqua&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
+:root{--paper:#d9c79e;--ink:#30291d;--dark:#17251e;--gold:#a78045;--green:#51664c;--water:#647f82}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);background:#17241e;font-family:'Crimson Text',serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse,transparent 45%,rgba(0,0,0,.55) 100%);z-index:5}
+.top{padding:32px 24px 25px;text-align:center;color:#e0d0aa;background:linear-gradient(#17241e,#24362b);border-bottom:1px solid #8d774e}
+.kicker{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:#b8a478}
+h1{font-family:'Uncial Antiqua',serif;font-size:clamp(35px,6vw,70px);font-weight:400;margin:12px 0 5px;text-shadow:0 3px 0 #111}
+.subtitle{font-style:italic;font-size:20px;color:#c7b58e}
+.topline{display:flex;justify-content:center;gap:24px;margin-top:23px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9f9a7c}
+.shell{max-width:1600px;margin:auto;padding:20px}
+.map-frame{background:#a9a17c;padding:12px;border:1px solid #77613e;box-shadow:0 15px 55px #050b08;position:relative}
+.map{width:100%;height:auto;display:block;background:#c6ba91;border:2px solid #594a32;box-shadow:inset 0 0 50px #7e755b}
+.map text{font-family:'IM Fell English',serif;fill:#322c20;paint-order:stroke;stroke:#d4c6a0;stroke-width:2px;stroke-opacity:.65;stroke-linejoin:round}
+.region{font-family:'Uncial Antiqua',serif!important;font-size:28px;letter-spacing:4px;fill:#554b36!important;opacity:.65;stroke:none!important}
+.place{cursor:pointer;transition:filter .2s,transform .2s;transform-box:fill-box;transform-origin:center}.place:hover{filter:drop-shadow(0 0 5px #fff5c4);transform:scale(1.12)}
+.place .label{font-size:20px;text-anchor:middle;font-weight:600}.place .small{font-size:16px;text-anchor:middle;font-style:italic}.place .pin{fill:#413623;stroke:#d9c99f;stroke-width:2}
+.place:hover .label{fill:#7b3b25}
+.map-note{font-size:15px;text-anchor:middle;font-style:italic;fill:#5a4a32!important}
+.compass{font-family:'Uncial Antiqua',serif!important;fill:#463a26!important;stroke:none!important;font-size:24px;text-anchor:middle}
+.frame-caption{display:flex;justify-content:space-between;padding:10px 4px 0;font-size:13px;font-style:italic;color:#574a32}
+.instructions{text-align:center;color:#d8c69b;padding:36px 15px 50px;font-size:18px}.instructions strong{font-family:'IM Fell English',serif;font-size:24px;font-weight:400}
+.legend{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:15px}.legend span{border:1px solid #6d674f;padding:6px 12px;color:#c7b991;font-size:12px}
+footer{text-align:center;padding:24px;border-top:1px solid #5b604c;color:#9c997e;font-size:12px;letter-spacing:.12em}
+.modal{position:fixed;inset:0;background:rgba(5,10,7,.78);display:none;place-items:center;z-index:20;padding:20px;backdrop-filter:blur(5px)}.modal.open{display:grid}
+.panel{max-width:540px;width:100%;padding:36px;background:#d7c69d;border:5px double #67543a;box-shadow:0 20px 70px #000;position:relative;text-align:center}
+.panel h2{font-family:'Uncial Antiqua',serif;font-size:32px;font-weight:400;margin:5px 0 14px}.panel p{font-size:20px;line-height:1.5}.panel .stamp{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#716045}.close{position:absolute;right:12px;top:12px;background:none;border:0;font-size:26px;cursor:pointer;color:#453724}.panel .coming{display:inline-block;margin-top:10px;border-top:1px solid #8b7754;padding-top:14px;font-style:italic;color:#6d5a3e}
+@media(max-width:650px){.shell{padding:7px}.map-frame{padding:4px}.topline{gap:10px;font-size:9px}.frame-caption{font-size:11px}.instructions{padding:25px 10px}.map{min-width:800px}.map-frame{overflow:auto}.map-frame:after{content:'← Scroll across the map →';position:sticky;left:0;display:block;text-align:center;font-size:12px;color:#55462f;padding:6px}}
 </style>
 </head>
 <body>
-<div id="stars"></div><div id="stars2"></div>
-<header class="nav">
-<a class="brand" href="#"><span class="brand-mark"></span>THE OBSERVATORY</a>
-<nav class="navlinks" aria-label="Main navigation"><a href="#">Home</a><a class="future" href="#" title="Coming soon">Research</a><a class="future" href="#" title="Coming soon">Archive</a><a class="future" href="#" title="Coming soon">Projects</a><a class="future" href="#" title="Coming soon">About</a></nav>
-</header>
-<main>
-<section class="hero">
-<div class="hero-copy">
-<div class="eyebrow">A personal research universe</div>
-<h1>THE<br><span class="hollow">OBSERVATORY</span></h1>
-<div class="tagline">An archive of everything<br>that has yet to be understood.</div>
-<p class="intro">A place for questions that refuse to stay quiet. For distant worlds, impossible ideas, unfinished experiments, and the things we create while trying to make sense of it all.</p>
-<a class="cta" href="#observing">ENTER THE OBSERVATORY <span class="arrow">↗</span></a>
-</div>
-<div class="visual" aria-label="Abstract celestial planet illustration">
-<div class="orbit2"></div><div class="orbit"></div><div class="planet"></div><div class="orbit-dot"></div>
-<div class="visual-label mono">OBJECT 001<br>UNCLASSIFIED / INFINITE</div>
-</div>
-<div class="hero-bottom mono"><span>EST. IN CURIOSITY</span><span>SCROLL TO EXPLORE ↓</span></div>
-</section>
-<section class="section" id="observing">
-<div class="section-head"><div><div class="section-kicker">01 — Active curiosities</div><h2 class="section-title">Currently observing</h2></div><p class="section-note">Three windows into a universe of questions. The list is never truly complete.</p></div>
-<div class="cards">
-<article class="card"><div class="card-num mono">FIELD 01 / COSMOS</div><div class="card-symbol">✦</div><h3>The Universe</h3><p>Physics, astronomy, the strange architecture of reality, and the vastness that makes us ask.</p><div class="card-footer"><span>Exploring the unknown</span><span>↗</span></div></article>
-<article class="card"><div class="card-num mono">FIELD 02 / THOUGHT</div><div class="card-symbol">⌘</div><h3>The Mind</h3><p>Philosophy, questions of existence, ideas that rearrange the way the world is seen.</p><div class="card-footer"><span>Under examination</span><span>↗</span></div></article>
-<article class="card"><div class="card-num mono">FIELD 03 / CREATION</div><div class="card-symbol">⌁</div><h3>The Workshop</h3><p>Stories, experiments, projects, and strange little things that begin as a thought.</p><div class="card-footer"><span>In progress</span><span>↗</span></div></article>
-</div>
-</section>
-<section class="status"><div class="terminal"><div class="terminal-title mono">⌁ Observatory terminal / live status</div><div class="stat"><div class="stat-label">Institute status</div><div class="stat-value">OPERATIONAL</div></div><div class="stat"><div class="stat-label">Active investigations</div><div class="stat-value">03</div></div><div class="stat"><div class="stat-label">Unsolved questions</div><div class="stat-value">∞</div></div></div></section>
+<header class="top"><div class="kicker">A cartographer's work in progress</div><h1>THE OBSERVATORY</h1><div class="subtitle">An atlas of curiosities, creations, and things yet undiscovered.</div><div class="topline"><span>✦ Est. in wonder</span><span>✦ Every path leads somewhere</span><span>✦ Not all places are mapped</span></div></header>
+<main class="shell"><div class="map-frame"><svg class="map" viewBox="0 0 1500 1000" role="img" aria-label="Fantasy map of The Observatory">
+<defs>
+<pattern id="paper" width="90" height="90" patternUnits="userSpaceOnUse"><rect width="90" height="90" fill="#c9bd94"/><path d="M0 22 Q20 18 45 25 T90 20 M0 67 Q20 72 45 63 T90 70" fill="none" stroke="#b4a77f" stroke-width=".7" opacity=".3"/><circle cx="18" cy="45" r="1" fill="#817450" opacity=".3"/><circle cx="70" cy="15" r="1" fill="#817450" opacity=".3"/></pattern>
+<pattern id="sea" width="80" height="40" patternUnits="userSpaceOnUse"><path d="M0 10 Q20 0 40 10 T80 10 M0 30 Q20 20 40 30 T80 30" fill="none" stroke="#536f72" stroke-width="1" opacity=".45"/></pattern>
+<g id="tree"><path d="M0 0 l-10 15 8-2 -9 13 20 0 -9-13 8 2z" fill="#475b42" stroke="#293b2c" stroke-width="1"/><path d="M0 25v7" stroke="#5b4730" stroke-width="3"/></g>
+<g id="mountain"><path d="M-28 35 L-5-15 5 5 18-24 38 35Z" fill="#887e64" stroke="#4f4b3b" stroke-width="2"/><path d="M-5-15 0 0 -8 8 5 5 18-24 10-4 20 10 8 7" fill="#d9d0b6" stroke="#77715f" stroke-width="1"/></g>
+<g id="castle"><path d="M-25 20V-8h10v-17h12v17h8v-24h12v24h10v28z" fill="#79674b" stroke="#463923" stroke-width="2"/><path d="M-25-8h10v-17h12v17h8v-24h12v24h10v28h-52z" fill="none" stroke="#443a27" stroke-width="2"/><path d="M-7 20V4Q0-7 7 4V20" fill="#342b20"/></g>
+<g id="tower"><path d="M-14 25V-15H14V25Z" fill="#77684c" stroke="#453b29" stroke-width="2"/><path d="M-18-15 0-36 18-15Z" fill="#4e4935" stroke="#453b29" stroke-width="2"/><rect x="-4" y="-5" width="8" height="12" fill="#d3b77b"/></g>
+<g id="ship"><path d="M-24 0H24L14 14H-14Z" fill="#675239" stroke="#382e20" stroke-width="2"/><path d="M0-35V0 M0-30L20-6H0Z M-1-28L-18-8H-1Z" fill="#e0d2aa" stroke="#645238"/></g>
+</defs>
+<rect width="1500" height="1000" fill="url(#sea)"/><rect width="1500" height="1000" fill="url(#paper)" opacity=".55"/>
+<!-- coastlines and land -->
+<path d="M80 120 Q190 70 300 115 T500 105 Q600 135 660 205 Q720 250 680 325 Q650 400 570 420 Q520 460 460 430 Q380 470 300 410 Q230 390 180 330 Q90 280 80 120Z" fill="#c9bd91" stroke="#716449" stroke-width="5"/>
+<path d="M770 80 Q890 55 1020 100 Q1140 80 1300 180 Q1400 260 1350 380 Q1330 470 1250 490 Q1150 550 1060 490 Q980 530 900 460 Q800 410 760 320 Q720 200 770 80Z" fill="#c5b88c" stroke="#716449" stroke-width="5"/>
+<path d="M180 500 Q250 460 360 500 Q450 550 440 650 Q430 760 330 820 Q230 850 170 760 Q90 670 180 500Z" fill="#c9bd91" stroke="#716449" stroke-width="5"/>
+<path d="M620 560 Q730 500 850 550 Q940 620 900 750 Q850 850 730 850 Q620 810 590 700 Q570 620 620 560Z" fill="#c9bd91" stroke="#716449" stroke-width="5"/>
+<path d="M1040 620 Q1150 580 1290 650 Q1400 730 1300 850 Q1200 930 1080 860 Q980 780 1040 620Z" fill="#c9bd91" stroke="#716449" stroke-width="5"/>
+<!-- forest patches -->
+<g opacity=".9"><use href="#tree" x="230" y="210"/><use href="#tree" x="270" y="250"/><use href="#tree" x="300" y="220"/><use href="#tree" x="350" y="270"/><use href="#tree" x="390" y="220"/><use href="#tree" x="420" y="290"/><use href="#tree" x="240" y="300"/><use href="#tree" x="320" y="320"/><use href="#tree" x="390" y="340"/><use href="#tree" x="450" y="250"/>
+<use href="#tree" x="1080" y="230"/><use href="#tree" x="1120" y="270"/><use href="#tree" x="1180" y="230"/><use href="#tree" x="1230" y="300"/><use href="#tree" x="1280" y="250"/><use href="#tree" x="1090" y="340"/><use href="#tree" x="1170" y="360"/><use href="#tree" x="1250" y="390"/>
+<use href="#tree" x="220" y="620"/><use href="#tree" x="280" y="660"/><use href="#tree" x="340" y="620"/><use href="#tree" x="390" y="700"/><use href="#tree" x="300" y="740"/><use href="#tree" x="1100" y="760"/><use href="#tree" x="1170" y="800"/><use href="#tree" x="1260" y="750"/></g>
+<!-- mountains -->
+<g><use href="#mountain" x="520" y="170"/><use href="#mountain" x="570" y="190"/><use href="#mountain" x="620" y="155"/><use href="#mountain" x="660" y="220"/><use href="#mountain" x="720" y="180"/><use href="#mountain" x="780" y="230"/><use href="#mountain" x="830" y="190"/><use href="#mountain" x="870" y="230"/><use href="#mountain" x="900" y="180"/><use href="#mountain" x="930" y="260"/>
+<use href="#mountain" x="510" y="700"/><use href="#mountain" x="560" y="730"/><use href="#mountain" x="610" y="680"/><use href="#mountain" x="650" y="760"/><use href="#mountain" x="700" y="700"/></g>
+<!-- roads and waterways -->
+<g fill="none" stroke="#8b714b" stroke-width="4" stroke-dasharray="2 10" stroke-linecap="round"><path d="M360 360 C470 380 500 470 620 440 S820 420 980 360 S1140 450 1180 550"/><path d="M320 650 C440 570 510 570 650 650 S900 700 1120 720"/><path d="M600 280 Q700 370 760 500 T750 780"/></g>
+<g fill="none" stroke="#718c8a" stroke-width="5" opacity=".8"><path d="M450 140 Q420 260 500 350 T470 470"/><path d="M930 100 Q1000 210 930 330 T1000 500"/></g>
+<!-- region titles -->
+<text class="region" x="365" y="145" text-anchor="middle">THE STORYWOOD</text><text class="region" x="1110" y="130" text-anchor="middle">THE WILDS OF WONDER</text><text class="region" x="310" y="540" text-anchor="middle">THE CREATIVE COAST</text><text class="region" x="750" y="900" text-anchor="middle">THE SCHOLAR'S RANGE</text><text class="region" x="1190" y="600" text-anchor="middle">THE OUTER REALMS</text>
+<!-- iconic locations -->
+<g class="place" data-name="The Library" data-desc="A vast, ever-expanding library. Books, notes, knowledge, discoveries, and anything worth keeping."><use href="#castle" x="470" y="350"/><text class="label" x="470" y="395">The Library</text><text class="small" x="470" y="417">Books &amp; knowledge</text></g>
+<g class="place" data-name="Manga Forest" data-desc="A forest of panels, volumes, characters, worlds, and stories waiting to be read."><use href="#tree" x="270" y="205"/><use href="#tree" x="300" y="180"/><use href="#tree" x="330" y="210"/><text class="label" x="315" y="260">Manga Forest</text><text class="small" x="315" y="282">Stories between panels</text></g>
+<g class="place" data-name="The OC Atelier" data-desc="The workshop where original characters are born, redesigned, developed, and occasionally cause chaos."><use href="#tower" x="260" y="650"/><text class="label" x="260" y="700">OC Atelier</text><text class="small" x="260" y="721">Original creations</text></g>
+<g class="place" data-name="Character Forge" data-desc="A forge for personalities, designs, quirks, backstories, relationships, and characters who refuse to behave."><use href="#tower" x="380" y="600"/><text class="label" x="380" y="648">Character Forge</text></g>
+<g class="place" data-name="Storylands" data-desc="A continent of plots, manga ideas, novels, scenes, worlds, and narrative experiments."><use href="#castle" x="540" y="390"/><text class="label" x="540" y="438">Storylands</text><text class="small" x="540" y="460">Tales &amp; worlds</text></g>
+<g class="place" data-name="Philosophers' Coast" data-desc="Questions about existence, ethics, society, meaning, nature, and all those thoughts that refuse to leave at 2 AM."><text class="label" x="180" y="590">Philosophers' Coast</text><text class="small" x="180" y="612">Questions without shores</text></g>
+<g class="place" data-name="The Universe" data-desc="Cosmology, galaxies, stars, black holes, origins, endings, and the immense things we don't yet know."><use href="#tower" x="890" y="380"/><text class="label" x="890" y="430">The Universe</text></g>
+<g class="place" data-name="Space" data-desc="Spaceflight, exploration, spacecraft, missions, orbital mechanics, and humanity's next steps beyond Earth."><use href="#ship" x="1050" y="290"/><text class="label" x="1050" y="350">Space</text><text class="small" x="1050" y="370">The frontier</text></g>
+<g class="place" data-name="Physics" data-desc="The laws, symmetries, forces, and beautiful machinery underlying reality."><use href="#mountain" x="620" y="670"/><text class="label" x="620" y="725">Physics</text></g>
+<g class="place" data-name="Maths" data-desc="Patterns, proofs, olympiad problems, abstractions, and the language of structure."><use href="#mountain" x="740" y="690"/><text class="label" x="740" y="745">Maths</text></g>
+<g class="place" data-name="Linguistics" data-desc="Languages, etymology, writing systems, grammar, sounds, and the ways humans shape meaning."><text class="label" x="900" y="660">Linguistics</text><text class="small" x="900" y="682">Tongues &amp; symbols</text></g>
+<g class="place" data-name="Art" data-desc="Sketches, visual ideas, design, illustration, aesthetics, and experiments with shape and colour."><use href="#tower" x="430" y="720"/><text class="label" x="430" y="765">Art</text></g>
+<g class="place" data-name="The Music Isles" data-desc="Songs, musical ideas, rhythms, moods, and soundtracks to imaginary places."><text class="label" x="1180" y="810">The Music Isles</text><text class="small" x="1180" y="832">Sound &amp; silence</text></g>
+<g class="place" data-name="The Cinema" data-desc="Films, animation, visual storytelling, scenes, and the art of making a world feel real."><text class="label" x="1100" y="870">The Cinema</text></g>
+<g class="place" data-name="Nature Sanctuary" data-desc="Animals, plants, ecosystems, environmental ideas, and the living world worth protecting."><text class="label" x="1230" y="420">Nature Sanctuary</text><text class="small" x="1230" y="442">The living world</text></g>
+<g class="place" data-name="History" data-desc="Civilizations, people, events, inventions, and the long, messy story of humanity."><text class="label" x="350" y="800">History</text></g>
+<g class="place" data-name="Myth &amp; Legend" data-desc="Mythologies, folklore, legendary creatures, ancient beliefs, and stories that outlived their origins."><text class="label" x="1350" y="300">Myth &amp; Legend</text></g>
+<g class="place" data-name="Dream Observatory" data-desc="Dreams, lucid dreaming, surreal experiences, imagination, and the strange landscape of sleep."><use href="#tower" x="760" y="300"/><text class="label" x="760" y="350">Dream Observatory</text></g>
+<g class="place" data-name="The Archive" data-desc="An archive of personal notes, memories, ideas, references, and things that should not be lost."><use href="#castle" x="680" y="430"/><text class="label" x="680" y="478">The Archive</text></g>
+<g class="place" data-name="The Inventors' Guild" data-desc="Projects, experiments, prototypes, websites, inventions, and things being built simply because they can be."><use href="#tower" x="1020" y="700"/><text class="label" x="1020" y="750">Inventors' Guild</text></g>
+<g class="place" data-name="The Garden of Ideas" data-desc="Random thoughts, sparks, concepts, questions, and seeds of projects that may grow into something huge."><text class="label" x="750" y="530">Garden of Ideas</text><text class="small" x="750" y="552">Seeds of possibility</text></g>
+<g class="place" data-name="The Language Bazaar" data-desc="Languages being learned, phrases collected, translations, vocabulary, and cross-cultural discoveries."><text class="label" x="1000" y="540">Language Bazaar</text></g>
+<g class="place" data-name="The Uncharted" data-desc="A deliberately blank region. Interests, discoveries, and future obsessions will find their place here."><text class="label" x="560" y="850">The Uncharted</text><text class="small" x="560" y="872">Here be future interests</text></g>
+<g class="place" data-name="The Games District" data-desc="Games, worlds, mechanics, lore, challenges, and interactive ideas."><text class="label" x="1320" y="710">Games District</text></g>
+<g class="place" data-name="The Great Questions" data-desc="The questions that connect everything: what is reality, what is life, how do we know, and what should we do?"><text class="label" x="850" y="820">The Great Questions</text></g>
+<!-- decorative cartography -->
+<g fill="none" stroke="#69583b" stroke-width="1.5" opacity=".7"><path d="M100 430 Q200 460 280 420 T450 440"/><path d="M950 560 Q1050 580 1150 540 T1350 560"/><circle cx="750" cy="500" r="80" stroke-dasharray="4 8"/><circle cx="750" cy="500" r="110" stroke-dasharray="2 10"/></g>
+<g transform="translate(1400 100)"><circle r="60" fill="none" stroke="#55452e" stroke-width="2"/><circle r="45" fill="none" stroke="#55452e"/><path d="M0-75 10-10 0 0 -10-10Z" fill="#4a3b25"/><path d="M0 75 10 10 0 0 -10 10Z" fill="#8b754e"/><path d="M-75 0 -10 10 0 0 -10-10Z" fill="#8b754e"/><path d="M75 0 10 10 0 0 10-10Z" fill="#4a3b25"/><text class="compass" y="-85">N</text><text class="compass" y="102">S</text><text class="compass" x="92" y="8">E</text><text class="compass" x="-92" y="8">W</text></g>
+<text class="map-note" x="750" y="970">The map is incomplete by design. There are always more worlds to discover.</text>
+</svg></div><div class="frame-caption"><span>✦ THE KNOWN REALMS ✦</span><span>Cartography is never finished.</span></div></div>
+<section class="instructions"><strong>Choose a place and begin wandering.</strong><div>Every landmark is a doorway. Some are already full of things; others are waiting to be built.</div><div class="legend"><span>✦ Knowledge</span><span>♧ Creativity</span><span>⌁ Exploration</span><span>◈ Uncharted</span></div></section>
 </main>
-<footer><span>THE OBSERVATORY</span><span>Built for the curious</span><span>© 2026 — AND BEYOND</span></footer>
+<footer>THE OBSERVATORY · A MAP OF CURIOSITY · DRAWN IN PROGRESS</footer>
+<div class="modal" id="modal" role="dialog" aria-modal="true"><div class="panel"><button class="close" aria-label="Close">×</button><div class="stamp">A place on the map</div><h2 id="modal-title"></h2><p id="modal-desc"></p><div class="coming">This corner of the world is being charted...</div></div></div>
 <script>
-document.querySelectorAll('.future').forEach(a=>a.addEventListener('click',e=>e.preventDefault()));
+const modal=document.getElementById('modal');document.querySelectorAll('.place').forEach(place=>place.addEventListener('click',()=>{document.getElementById('modal-title').textContent=place.dataset.name;document.getElementById('modal-desc').textContent=place.dataset.desc;modal.classList.add('open')}));document.querySelector('.close').onclick=()=>modal.classList.remove('open');modal.addEventListener('click',e=>{if(e.target===modal)modal.classList.remove('open')});document.addEventListener('keydown',e=>{if(e.key==='Escape')modal.classList.remove('open')});
 </script>
-</body>
-</html>
+</body></html>
