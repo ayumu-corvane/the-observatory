@@ -1,220 +1,65 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#18241d">
-<title>The Observatory — Atlas of a Curious Mind</title>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#fff8ef">
+<title>The Observatory</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Uncial+Antiqua&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
-:root{--paper:#d9c79e;--ink:#30291d;--dark:#17251e;--gold:#a78045;--green:#51664c;--water:#58a7b0}
-*{box-sizing:border-box}html{scroll-behavior:auto}body{margin:0;color:var(--ink);background:#17241e;font-family:'Crimson Text',serif}
-
-.top{padding:32px 24px 25px;text-align:center;color:#e0d0aa;background:linear-gradient(#17241e,#24362b);border-bottom:1px solid #8d774e}
-.kicker{font-size:12px;letter-spacing:.28em;text-color:#b8a478}
-h1{font-family:'Uncial Antiqua',serif;font-size:clamp(35px,6vw,70px);font-weight:400;margin:12px 0 5px;text-shadow:0 3px 0 #111;color:#d4af37}
-.subtitle{font-style:italic;font-size:20px;color:#d4af37}
-.topline{display:flex;justify-content:center;gap:24px;margin-top:23px;font-size:11px;letter-spacing:.16em;text-color:#9f9a7c}
-.shell{max-width:1600px;margin:auto;padding:20px}
-.map-frame{background:#9db7a3;padding:12px;border:1px solid #77613e;box-shadow:0 15px 55px #050b08;position:relative}
-.map{width:100%;height:auto;display:block;background:#75bfc5;border:2px solid #594a32;box-shadow:inset 0 0 50px #7e755b}
-.map text{font-family:'IM Fell English',serif;fill:#322c20;paint-order:stroke;stroke:#d4c6a0;stroke-width:2px;stroke-opacity:.65;stroke-linejoin:round}
-.region{font-family:'Uncial Antiqua',serif!important;font-size:28px;letter-spacing:4px;fill:#554b36!important;opacity:.65;stroke:none!important}
-.place{cursor:grab;user-select:none;-webkit-user-select:none}.place:active{cursor:grabbing}
-.place .label{font-size:20px;text-anchor:middle;font-weight:600}.place .small{font-size:16px;text-anchor:middle;font-style:italic}.place .pin{fill:#413623;stroke:#d9c99f;stroke-width:2}
-
-.map-note{font-size:15px;text-anchor:middle;font-style:italic;fill:#5a4a32!important}
-.compass{font-family:'Uncial Antiqua',serif!important;fill:#463a26!important;stroke:none!important;font-size:24px;text-anchor:middle}
-.frame-caption{display:flex;justify-content:space-between;padding:10px 4px 0;font-size:13px;font-style:italic;color:#574a32}
-.instructions{text-align:center;color:#d8c69b;padding:36px 15px 50px;font-size:18px}.instructions strong{font-family:'IM Fell English',serif;font-size:24px;font-weight:400}
-.legend{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:15px}.legend span{border:1px solid #6d674f;padding:6px 12px;color:#c7b991;font-size:12px}
-footer{text-align:center;padding:24px;border-top:1px solid #5b604c;color:#9c997e;font-size:12px;letter-spacing:.12em}
-.location-view{position:fixed;inset:0;z-index:50;display:none;overflow:auto;background:#17241e;color:#d9c79e;padding:clamp(12px,3vw,36px)}.location-view.open{display:block}
-.location-shell{max-width:1180px;margin:auto;border:1px solid #8d774e;background:#24362b;box-shadow:0 20px 70px #050b08;min-height:calc(100vh - 2*clamp(12px,3vw,36px))}
-.location-top{padding:22px 28px;border-bottom:1px solid #8d774e;display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}
-.back-map,.location-action{font-family:'Crimson Text',serif;font-size:17px;background:#d7c69d;color:#30291d;border:2px solid #786345;padding:9px 16px;cursor:pointer}
-.location-hero{padding:clamp(28px,6vw,70px);text-align:center;background:linear-gradient(135deg,#263b2e,#18251e);border-bottom:1px solid #8d774e}
-.location-kicker{letter-spacing:.2em;font-size:12px;color:#b8a478}.location-hero h2{font-family:'Uncial Antiqua',serif;font-weight:400;font-size:clamp(30px,5vw,58px);color:#d4af37;margin:18px 0}.location-hero p{max-width:700px;margin:auto;font-size:22px;line-height:1.5;color:#d9c79e}
-.location-nav{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;padding:18px;border-bottom:1px solid #6d674f}
-.location-nav button{background:transparent;color:#d9c79e;border:1px solid #776445;padding:8px 18px;font-family:inherit;font-size:16px;cursor:pointer}.location-nav button.active{background:#d7c69d;color:#30291d}
-.location-content{padding:clamp(18px,4vw,42px)}.section-title{font-family:'Uncial Antiqua',serif;font-size:27px;font-weight:400;color:#d4af37;margin:0 0 8px}.section-intro{font-size:18px;color:#c7b991;margin:0 0 25px}
-.location-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}.location-card{background:#d7c69d;color:#30291d;border:2px solid #786345;padding:20px;min-height:150px}.location-card h3{font-family:'IM Fell English',serif;font-size:23px;margin:0 0 10px}.location-card p{font-size:17px;line-height:1.4;margin:0}.location-card .card-meta{font-size:12px;letter-spacing:.12em;margin-bottom:8px;color:#6d5a3e}
-.entry-form{margin-top:28px;padding:20px;border:1px solid #786345;background:#1b2a21}.entry-form input,.entry-form textarea{width:100%;margin:7px 0;padding:10px;background:#d7c69d;border:1px solid #786345;color:#30291d;font-family:inherit;font-size:17px}.entry-form textarea{min-height:90px;resize:vertical}.entry-form button{margin-top:8px}.entry-list{margin-top:20px}.empty-state{border:1px dashed #8d774e;padding:28px;text-align:center;font-style:italic;font-size:18px;color:#c7b991}
-.location-footer{padding:20px;text-align:center;border-top:1px solid #6d674f;color:#9c997e;font-size:12px;letter-spacing:.12em}
-@media(max-width:650px){.location-top{padding:14px}.location-hero{padding:28px 18px}.location-content{padding:18px}.location-nav{gap:5px}.location-nav button{padding:7px 10px}}
-@media(max-width:650px){.shell{padding:7px}.map-frame{padding:4px}.topline{gap:10px;font-size:9px}.frame-caption{font-size:11px}.instructions{padding:25px 10px}.map{min-width:800px}.map-frame{overflow:auto}.map-frame:after{content:'← Scroll across the map →';position:sticky;left:0;display:block;text-align:center;font-size:12px;color:#55462f;padding:6px}}
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=DM+Serif+Display:ital@0;1&display=swap');
+:root{--ink:#27344a;--muted:#66748a;--paper:#fffaf4;--white:#fff;--line:#e9e8e8;--blue:#8dd4ff;--pink:#ffb8cf;--green:#a9e7bd;--purple:#cbb8ff;--yellow:#ffe28b;--orange:#ffbf91}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Nunito,sans-serif}
+button{font:inherit;cursor:pointer}
+.page{max-width:1250px;margin:auto;padding:32px 28px 70px}
+.hero{position:relative;overflow:hidden;background:#d9f0ff;border-radius:30px;padding:42px 44px 36px;margin-bottom:30px;border:2px solid #b8e2ff}
+.hero:before,.hero:after{content:"";position:absolute;border-radius:50%;pointer-events:none}.hero:before{width:260px;height:260px;background:#ffe6a6;right:-55px;top:-110px}.hero:after{width:160px;height:160px;background:#ffbdd4;right:100px;bottom:-110px}
+.hero-content{position:relative;z-index:1}.eyebrow{font-size:12px;font-weight:900;letter-spacing:.2em;text-transform:uppercase;color:#53728b}
+h1{font-family:'DM Serif Display',serif;font-size:clamp(42px,7vw,76px);font-weight:400;letter-spacing:-.035em;margin:8px 0 4px;color:#294b68}
+.subtitle{font-size:18px;color:#52718b;max-width:620px}
+.hero-tags{display:flex;gap:9px;flex-wrap:wrap;margin-top:24px}.tag{background:#fff9;border:1px solid #ffffffb0;border-radius:100px;padding:8px 13px;font-size:12px;font-weight:800;color:#45647b}
+.section-heading{display:flex;justify-content:space-between;align-items:end;gap:18px;margin:34px 3px 18px}.section-heading h2{font-family:'DM Serif Display',serif;font-size:32px;font-weight:400;margin:0}.section-heading p{color:var(--muted);margin:4px 0 0}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.card{position:relative;overflow:hidden;min-height:220px;border-radius:24px;padding:24px;border:2px solid transparent;transition:transform .18s ease,box-shadow .18s ease;cursor:pointer}
+.card:hover{transform:translateY(-4px);box-shadow:0 12px 28px #29354b12}.card:focus-visible{outline:3px solid #344b70;outline-offset:3px}
+.card.knowledge{background:#d5edff;border-color:#b6dfff}.card.creation{background:#ffe0e9;border-color:#ffc4d7}.card.interests{background:#d9f5d9;border-color:#bce7bd}.card.projects{background:#e6dcff;border-color:#cfc0ff}.card.personal{background:#fff0c4;border-color:#ffe49b}.card.misc{background:#ffe2cb;border-color:#ffc99f}
+.card-top{display:flex;justify-content:space-between;align-items:start}.icon{width:54px;height:54px;border-radius:17px;background:#ffffffa8;display:grid;place-items:center;font-size:28px}.arrow{font-size:22px;color:#43546a;background:#ffffff8c;border-radius:50%;width:35px;height:35px;display:grid;place-items:center}
+.card h3{font-size:25px;font-weight:900;margin:18px 0 6px;letter-spacing:-.02em}.card p{margin:0;line-height:1.55;max-width:450px;color:#44536a;font-size:15px}
+.chips{display:flex;gap:7px;flex-wrap:wrap;margin-top:18px}.chip{border-radius:100px;padding:6px 10px;background:#ffffffa8;font-size:12px;font-weight:800;color:#45566c}
+.footer{text-align:center;color:#9aa2ad;font-size:12px;letter-spacing:.12em;margin-top:44px}
+.overlay{position:fixed;inset:0;background:#28344c70;backdrop-filter:blur(5px);z-index:10;display:none;overflow:auto;padding:20px}.overlay.open{display:block}.panel{max-width:900px;margin:20px auto;background:#fffdf9;border-radius:28px;overflow:hidden;box-shadow:0 25px 80px #1d2b4233}
+.panel-head{padding:26px 30px;display:flex;align-items:center;justify-content:space-between;gap:16px;background:var(--panel-color,#d5edff)}.panel-title{display:flex;gap:15px;align-items:center}.panel-title .icon{background:#ffffffa8}.panel-title h2{font-family:'DM Serif Display',serif;font-size:35px;font-weight:400;margin:0}.close{border:0;background:#ffffffa8;width:42px;height:42px;border-radius:50%;font-size:24px;color:#34445c}
+.panel-body{padding:28px}.panel-description{color:#637187;font-size:16px;margin:0 0 22px}
+.subsections{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.subsection{border:1px solid #e8e8e8;border-radius:17px;padding:16px;background:#fff}.subsection h3{margin:0 0 6px;font-size:17px}.subsection p{margin:0;color:#7a8493;font-size:13px}
+.add-box{margin-top:24px;border-radius:20px;background:#f7f8fb;padding:20px}.add-box h3{margin:0 0 12px}.add-box input,.add-box textarea{width:100%;border:1px solid #dfe3ea;border-radius:12px;padding:12px 14px;font:inherit;margin:6px 0;background:white;color:var(--ink)}.add-box textarea{min-height:90px;resize:vertical}.add-btn{border:0;background:#334b69;color:white;border-radius:12px;padding:11px 18px;font-weight:800;margin-top:6px}.items{display:grid;gap:10px;margin-top:20px}.item{border:1px solid #e8e8e8;background:white;border-radius:16px;padding:16px}.item h4{margin:0 0 6px;font-size:16px}.item p{margin:0;color:#637187;white-space:pre-wrap}.item button{margin-top:10px;border:0;background:#fce2e7;color:#a3445f;border-radius:9px;padding:7px 10px;font-weight:800}.empty{padding:20px;border:1px dashed #d6dce5;border-radius:15px;text-align:center;color:#8590a0}
+@media(max-width:700px){.page{padding:18px 14px 45px}.hero{padding:28px 24px;border-radius:24px}.grid{grid-template-columns:1fr}.card{min-height:190px}.section-heading{align-items:start;flex-direction:column}.panel-head{padding:20px}.panel-title h2{font-size:28px}.panel-body{padding:20px}.subsections{grid-template-columns:1fr}.overlay{padding:8px}.panel{margin:8px auto}}
 </style>
 </head>
-<body>
-<header class="top"><div class="kicker">A cartographer's work in progress</div><h1>THE OBSERVATORY</h1><div class="subtitle">An atlas of curiosities, creations, and things yet undiscovered.</div><div class="topline"><span>✦ Est. in wonder</span><span>✦ Every path leads somewhere</span><span>✦ Not all places are mapped</span></div></header>
-<main class="shell"><div class="map-frame"><svg class="map" viewBox="0 0 1500 1000" role="img" aria-label="Fantasy map of The Observatory">
-<defs>
-<pattern id="paper" width="90" height="90" patternUnits="userSpaceOnUse"><rect width="90" height="90" fill="#e6d09f"/><path d="M0 22 Q20 18 45 25 T90 20 M0 67 Q20 72 45 63 T90 70" fill="none" stroke="#b9a374" stroke-width=".7" opacity=".3"/><circle cx="18" cy="45" r="1" fill="#817450" opacity=".3"/><circle cx="70" cy="15" r="1" fill="#817450" opacity=".3"/></pattern>
-<pattern id="sea" width="80" height="40" patternUnits="userSpaceOnUse"><path d="M0 10 Q20 0 40 10 T80 10 M0 30 Q20 20 40 30 T80 30" fill="none" stroke="#378b96" stroke-width="1.3" opacity=".55"/></pattern>
-<g id="tree"><path d="M0 0 l-10 15 8-2 -9 13 20 0 -9-13 8 2z" fill="#3f814a" stroke="#25452b" stroke-width="1"/><path d="M0 25v7" stroke="#5b4730" stroke-width="3"/></g>
-<g id="mountain"><path d="M-28 35 L-5-15 5 5 18-24 38 35Z" fill="#91806b" stroke="#4f4b3b" stroke-width="2"/><path d="M-5-15 0 0 -8 8 5 5 18-24 10-4 20 10 8 7" fill="#e4d9bf" stroke="#655d4d" stroke-width="1"/></g>
-<g id="castle"><path d="M-25 20V-8h10v-17h12v17h8v-24h12v24h10v28z" fill="#79674b" stroke="#463923" stroke-width="2"/><path d="M-25-8h10v-17h12v17h8v-24h12v24h10v28h-52z" fill="none" stroke="#443a27" stroke-width="2"/><path d="M-7 20V4Q0-7 7 4V20" fill="#342b20"/></g>
-<g id="tower"><path d="M-14 25V-15H14V25Z" fill="#77684c" stroke="#453b29" stroke-width="2"/><path d="M-18-15 0-36 18-15Z" fill="#4e4935" stroke="#453b29" stroke-width="2"/><rect x="-4" y="-5" width="8" height="12" fill="#d3b77b"/></g>
-<g id="ship"><path d="M-24 0H24L14 14H-14Z" fill="#675239" stroke="#382e20" stroke-width="2"/><path d="M0-35V0 M0-30L20-6H0Z M-1-28L-18-8H-1Z" fill="#e0d2aa" stroke="#645238"/></g>
-</defs>
-<rect width="1500" height="1000" fill="url(#sea)"/><rect width="1500" height="1000" fill="url(#paper)" opacity=".28"/><path d="M0 430 Q120 390 210 450 T390 460 Q470 520 400 600 T220 700 Q90 660 0 740Z" fill="#7fc4c0" opacity=".45"/><path d="M690 0 Q770 80 720 160 T770 280 Q820 330 790 420 T840 530 Q900 620 850 730 T930 900 L1000 1000 L650 1000 Q720 900 670 820 T620 680 Q570 600 630 500 T610 350 Q570 230 650 150Z" fill="#72bfc1" opacity=".42"/><path d="M960 520 Q1050 470 1110 520 T1250 550 Q1320 600 1270 680 T1150 740 Q1060 700 1020 640Z" fill="#8ec9c0" opacity=".55"/>
-<!-- coastlines and land -->
-<path d="M80 120 Q190 70 300 115 T500 105 Q600 135 660 205 Q720 250 680 325 Q650 400 570 420 Q520 460 460 430 Q380 470 300 410 Q230 390 180 330 Q90 280 80 120Z" fill="#e2c78e" stroke="#716449" stroke-width="5"/>
-<path d="M770 80 Q890 55 1020 100 Q1140 80 1300 180 Q1400 260 1350 380 Q1330 470 1250 490 Q1150 550 1060 490 Q980 530 900 460 Q800 410 760 320 Q720 200 770 80Z" fill="#e0c58d" stroke="#716449" stroke-width="5"/>
-<path d="M180 500 Q250 460 360 500 Q450 550 440 650 Q430 760 330 820 Q230 850 170 760 Q90 670 180 500Z" fill="#d3c28e" stroke="#716449" stroke-width="5"/>
-<path d="M620 560 Q730 500 850 550 Q940 620 900 750 Q850 850 730 850 Q620 810 590 700 Q570 620 620 560Z" fill="#d3c28e" stroke="#716449" stroke-width="5"/>
-<path d="M1040 620 Q1150 580 1290 650 Q1400 730 1300 850 Q1200 930 1080 860 Q980 780 1040 620Z" fill="#d3c28e" stroke="#716449" stroke-width="5"/>
-<!-- soft watercolor terrain --><path d="M110 150 Q210 95 330 150 T500 180 Q560 260 500 330 Q400 380 300 350 T150 290Z" fill="#a9c98b" opacity=".42"/><path d="M820 120 Q950 90 1080 150 T1260 240 Q1280 330 1180 400 T950 400 Q850 330 820 220Z" fill="#d2bd86" opacity=".38"/><path d="M190 550 Q300 490 390 570 T380 740 Q260 800 180 700Z" fill="#95c184" opacity=".42"/><path d="M640 600 Q750 530 850 600 T850 760 Q740 820 650 750Z" fill="#a7c68e" opacity=".4"/><!-- forest patches -->
-<g opacity=".9"><use href="#tree" x="230" y="210"/><use href="#tree" x="270" y="250"/><use href="#tree" x="300" y="220"/><use href="#tree" x="350" y="270"/><use href="#tree" x="390" y="220"/><use href="#tree" x="420" y="290"/><use href="#tree" x="240" y="300"/><use href="#tree" x="320" y="320"/><use href="#tree" x="390" y="340"/><use href="#tree" x="450" y="250"/>
-<use href="#tree" x="1080" y="230"/><use href="#tree" x="1120" y="270"/><use href="#tree" x="1180" y="230"/><use href="#tree" x="1230" y="300"/><use href="#tree" x="1280" y="250"/><use href="#tree" x="1090" y="340"/><use href="#tree" x="1170" y="360"/><use href="#tree" x="1250" y="390"/>
-<use href="#tree" x="220" y="620"/><use href="#tree" x="280" y="660"/><use href="#tree" x="340" y="620"/><use href="#tree" x="390" y="700"/><use href="#tree" x="300" y="740"/><use href="#tree" x="1100" y="760"/><use href="#tree" x="1170" y="800"/><use href="#tree" x="1260" y="750"/></g>
-<!-- mountains -->
-<g><use href="#mountain" x="520" y="170"/><use href="#mountain" x="570" y="190"/><use href="#mountain" x="620" y="155"/><use href="#mountain" x="660" y="220"/><use href="#mountain" x="720" y="180"/><use href="#mountain" x="780" y="230"/><use href="#mountain" x="830" y="190"/><use href="#mountain" x="870" y="230"/><use href="#mountain" x="900" y="180"/><use href="#mountain" x="930" y="260"/>
-<use href="#mountain" x="510" y="700"/><use href="#mountain" x="560" y="730"/><use href="#mountain" x="610" y="680"/><use href="#mountain" x="650" y="760"/><use href="#mountain" x="700" y="700"/></g>
-<!-- roads and waterways -->
-<g fill="none" stroke="#8b714b" stroke-width="4" stroke-dasharray="2 10" stroke-linecap="round"><path d="M360 360 C470 380 500 470 620 440 S820 420 980 360 S1140 450 1180 550"/><path d="M320 650 C440 570 510 570 650 650 S900 700 1120 720"/><path d="M600 280 Q700 370 760 500 T750 780"/></g>
-<g fill="none" stroke="#718c8a" stroke-width="5" opacity=".8"><path d="M450 140 Q420 260 500 350 T470 470"/><path d="M930 100 Q1000 210 930 330 T1000 500"/></g>
-<!-- region titles -->
-<text class="region" x="365" y="145" text-anchor="middle">THE STORYWOOD</text><text class="region" x="1110" y="130" text-anchor="middle">THE WILDS OF WONDER</text><text class="region" x="310" y="540" text-anchor="middle">THE CREATIVE COAST</text><text class="region" x="750" y="900" text-anchor="middle">THE SCHOLAR'S RANGE</text><text class="region" x="1190" y="600" text-anchor="middle">THE OUTER REALMS</text>
-<!-- iconic locations -->
-<g class="place" data-name="The Library" transform="translate(-40 -20)" data-desc="A vast, ever-expanding library. Books, notes, knowledge, discoveries, and anything worth keeping."><use href="#castle" x="470" y="350"/><text class="label" x="470" y="395">The Library</text><text class="small" x="470" y="417">Books &amp; knowledge</text></g>
-<g class="place" data-name="Manga Forest" transform="translate(0 0)" data-desc="A forest of panels, volumes, characters, worlds, and stories waiting to be read."><use href="#tree" x="270" y="205"/><use href="#tree" x="300" y="180"/><use href="#tree" x="330" y="210"/><text class="label" x="315" y="260">Manga Forest</text><text class="small" x="315" y="282">Stories between panels</text></g>
-<g class="place" data-name="The OC Atelier" transform="translate(-20 40)" data-desc="The workshop where original characters are born, redesigned, developed, and occasionally cause chaos."><use href="#tower" x="260" y="650"/><text class="label" x="260" y="700">OC Atelier</text><text class="small" x="260" y="721">Original creations</text></g>
-<g class="place" data-name="Character Forge" transform="translate(25 -25)" data-desc="A forge for personalities, designs, quirks, backstories, relationships, and characters who refuse to behave."><use href="#tower" x="380" y="600"/><text class="label" x="380" y="648">Character Forge</text><text class="small" x="380" y="670">People &amp; personalities</text></g>
-<g class="place" data-name="Storylands" transform="translate(50 35)" data-desc="A continent of plots, manga ideas, novels, scenes, worlds, and narrative experiments."><use href="#castle" x="540" y="390"/><text class="label" x="540" y="438">Storylands</text><text class="small" x="540" y="460">Tales &amp; worlds</text></g>
-<g class="place" data-name="Philosophers' Coast" transform="translate(-50 -45)" data-desc="Questions about existence, ethics, society, meaning, nature, and all those thoughts that refuse to leave at 2 AM."><text class="label" x="180" y="590">Philosophers' Coast</text><text class="small" x="180" y="612">Questions without shores</text></g>
-<g class="place" data-name="The Universe" transform="translate(45 15)" data-desc="Cosmology, galaxies, stars, black holes, origins, endings, and the immense things we don't yet know."><use href="#tower" x="890" y="380"/><text class="label" x="890" y="430">The Universe</text></g>
-<g class="place" data-name="Space" transform="translate(25 -20)" data-desc="Spaceflight, exploration, spacecraft, missions, orbital mechanics, and humanity's next steps beyond Earth."><use href="#ship" x="1050" y="290"/><text class="label" x="1050" y="350">Space</text><text class="small" x="1050" y="370">The frontier</text></g>
-<g class="place" data-name="Physics" transform="translate(-20 -30)" data-desc="The laws, symmetries, forces, and beautiful machinery underlying reality."><use href="#mountain" x="620" y="670"/><text class="label" x="620" y="725">Physics</text></g>
-<g class="place" data-name="Maths" transform="translate(35 25)" data-desc="Patterns, proofs, olympiad problems, abstractions, and the language of structure."><use href="#mountain" x="740" y="690"/><text class="label" x="740" y="745">Maths</text></g>
-<g class="place" data-name="Linguistics" transform="translate(25 -20)" data-desc="Languages, etymology, writing systems, grammar, sounds, and the ways humans shape meaning."><text class="label" x="900" y="660">Linguistics</text><text class="small" x="900" y="682">Tongues &amp; symbols</text></g>
-<g class="place" data-name="Art" transform="translate(-20 20)" data-desc="Sketches, visual ideas, design, illustration, aesthetics, and experiments with shape and colour."><use href="#tower" x="430" y="720"/><text class="label" x="430" y="765">Art</text></g>
-<g class="place" data-name="The Music Isles" transform="translate(-30 20)" data-desc="Songs, musical ideas, rhythms, moods, and soundtracks to imaginary places."><text class="label" x="1180" y="810">The Music Isles</text><text class="small" x="1180" y="832">Sound &amp; silence</text></g>
-<g class="place" data-name="The Cinema" transform="translate(-25 -25)" data-desc="Films, animation, visual storytelling, scenes, and the art of making a world feel real."><text class="label" x="1100" y="870">The Cinema</text><text class="small" x="1100" y="892">Stories in motion</text></g>
-<g class="place" data-name="Nature Sanctuary" transform="translate(20 -30)" data-desc="Animals, plants, ecosystems, environmental ideas, and the living world worth protecting."><text class="label" x="1230" y="420">Nature Sanctuary</text><text class="small" x="1230" y="442">The living world</text></g>
-<g class="place" data-name="History" transform="translate(-20 15)" data-desc="Civilizations, people, events, inventions, and the long, messy story of humanity."><text class="label" x="350" y="800">History</text><text class="small" x="350" y="822">Echoes of the past</text></g>
-<g class="place" data-name="Myth &amp; Legend" data-desc="Mythologies, folklore, legendary creatures, ancient beliefs, and stories that outlived their origins."><text class="label" x="1350" y="300">Myth &amp; Legend</text><text class="small" x="1350" y="322">Mythologies &amp; folklore</text></g>
-<g class="place" data-name="Dream Observatory" transform="translate(35 -35)" data-desc="Dreams, lucid dreaming, surreal experiences, imagination, and the strange landscape of sleep."><use href="#tower" x="760" y="300"/><text class="label" x="760" y="350">Dream Observatory</text></g>
-<g class="place" data-name="The Archive" transform="translate(-30 35)" data-desc="An archive of personal notes, memories, ideas, references, and things that should not be lost."><use href="#castle" x="680" y="430"/><text class="label" x="680" y="478">The Archive</text><text class="small" x="680" y="500">Collected fragments</text></g>
-<g class="place" data-name="The Inventors' Guild" transform="translate(30 20)" data-desc="Projects, experiments, prototypes, websites, inventions, and things being built simply because they can be."><use href="#tower" x="1020" y="700"/><text class="label" x="1020" y="750">Inventors' Guild</text></g>
-<g class="place" data-name="The Garden of Ideas" transform="translate(20 20)" data-desc="Random thoughts, sparks, concepts, questions, and seeds of projects that may grow into something huge."><text class="label" x="750" y="530">Garden of Ideas</text><text class="small" x="750" y="552">Seeds of possibility</text></g>
-<g class="place" data-name="The Language Bazaar" transform="translate(-20 -25)" data-desc="Languages being learned, phrases collected, translations, vocabulary, and cross-cultural discoveries."><text class="label" x="1000" y="540">Language Bazaar</text><text class="small" x="1000" y="562">Words from everywhere</text></g>
-<g class="place" data-name="The Uncharted" transform="translate(-30 20)" data-desc="A deliberately blank region. Interests, discoveries, and future obsessions will find their place here."><text class="label" x="560" y="850">The Uncharted</text><text class="small" x="560" y="872">Here be future interests</text></g>
-<g class="place" data-name="The Games District" transform="translate(-20 15)" data-desc="Games, worlds, mechanics, lore, challenges, and interactive ideas."><text class="label" x="1320" y="710">Games District</text><text class="small" x="1320" y="732">Worlds to play in</text></g>
-<g class="place" data-name="The Great Questions" transform="translate(20 25)" data-desc="The questions that connect everything: what is reality, what is life, how do we know, and what should we do?"><text class="label" x="850" y="820">The Great Questions</text></g>
-<!-- water flourishes --><g opacity=".7"><use href="#wave" x="90" y="470"/><use href="#wave" x="120" y="485"/><use href="#wave" x="480" y="520"/><use href="#wave" x="1000" y="570"/><use href="#wave" x="1300" y="520"/><use href="#wave" x="1380" y="600"/><use href="#wave" x="950" y="900"/><use href="#wave" x="450" y="880"/><use href="#wave" x="100" y="900"/></g><!-- decorative cartography -->
-<g fill="none" stroke="#69583b" stroke-width="1.5" opacity=".7"><path d="M100 430 Q200 460 280 420 T450 440"/><path d="M950 560 Q1050 580 1150 540 T1350 560"/><circle cx="750" cy="500" r="80" stroke-dasharray="4 8"/><circle cx="750" cy="500" r="110" stroke-dasharray="2 10"/></g>
-<g transform="translate(1400 100)"><circle r="60" fill="none" stroke="#55452e" stroke-width="2"/><circle r="45" fill="none" stroke="#55452e"/><path d="M0-75 10-10 0 0 -10-10Z" fill="#4a3b25"/><path d="M0 75 10 10 0 0 -10 10Z" fill="#8b754e"/><path d="M-75 0 -10 10 0 0 -10-10Z" fill="#8b754e"/><path d="M75 0 10 10 0 0 10-10Z" fill="#4a3b25"/><text class="compass" y="-85">N</text><text class="compass" y="102">S</text><text class="compass" x="92" y="8">E</text><text class="compass" x="-92" y="8">W</text></g>
-<text class="map-note" x="750" y="970">The map is incomplete by design. There are always more worlds to discover.</text>
-</svg></div><div class="frame-caption"><span>✦ THE KNOWN REALMS ✦</span><span>Cartography is never finished.</span></div></div>
-<section class="instructions"><strong>Choose a place and begin wandering.</strong><div>Every landmark is a doorway. Some are already full of things; others are waiting to be built.</div><div class="legend"><span>✦ Knowledge</span><span>♧ Creativity</span><span>⌁ Exploration</span><span>◈ Uncharted</span></div></section>
-</main>
-<footer>THE OBSERVATORY · A MAP OF CURIOSITY · DRAWN IN PROGRESS</footer>
-<div class="location-view" id="location-view" role="dialog" aria-modal="true"><div class="location-shell"><div class="location-top"><button class="back-map" id="back-map">← Return to the map</button><span class="location-kicker">THE OBSERVATORY · A PLACE ON THE MAP</span></div><header class="location-hero"><div class="location-kicker" id="location-kicker"></div><h2 id="location-title"></h2><p id="location-desc"></p></header><nav class="location-nav" id="location-nav"><button class="active" data-tab="overview">Overview</button><button data-tab="collection">Collections</button><button data-tab="notes">Field notes</button></nav><main class="location-content" id="location-content"></main><footer class="location-footer">THE OBSERVATORY · YOUR WORLD, STILL UNFOLDING</footer></div></div>
+<body><main class="page">
+<header class="hero"><div class="hero-content"><div class="eyebrow">A personal universe · always expanding</div><h1>THE OBSERVATORY</h1><div class="subtitle">A place for everything I love, learn, create, and get inexplicably obsessed with.</div><div class="hero-tags"><span class="tag">✦ Curious by nature</span><span class="tag">✦ Organized chaos</span><span class="tag">✦ Under construction, always</span></div></div></header>
+<div class="section-heading"><div><h2>Explore your universe</h2><p>Pick a section. Wander around. Add whatever belongs there.</p></div></div>
+<section class="grid" id="sections">
+<article class="card knowledge" tabindex="0" data-section="knowledge"><div class="card-top"><div class="icon">📚</div><div class="arrow">↗</div></div><h3>Knowledge</h3><p>Things to understand, questions to investigate, and subjects that make the brain go brrrr.</p><div class="chips"><span class="chip">Physics</span><span class="chip">Maths</span><span class="chip">Astronomy</span><span class="chip">Philosophy</span><span class="chip">History</span><span class="chip">Languages</span></div></article>
+<article class="card creation" tabindex="0" data-section="creation"><div class="card-top"><div class="icon">🎨</div><div class="arrow">↗</div></div><h3>Creation</h3><p>Things brought into existence from the wonderful chaos of imagination.</p><div class="chips"><span class="chip">Stories</span><span class="chip">OCs</span><span class="chip">Characters</span><span class="chip">Manga</span><span class="chip">Art</span><span class="chip">Worldbuilding</span></div></article>
+<article class="card interests" tabindex="0" data-section="interests"><div class="card-top"><div class="icon">🌿</div><div class="arrow">↗</div></div><h3>Interests</h3><p>Hobbies, favourites, rabbit holes, and things that simply make life more interesting.</p><div class="chips"><span class="chip">Nature</span><span class="chip">Animals</span><span class="chip">Music</span><span class="chip">Cinema</span><span class="chip">Games</span><span class="chip">Manga</span></div></article>
+<article class="card projects" tabindex="0" data-section="projects"><div class="card-top"><div class="icon">🚀</div><div class="arrow">↗</div></div><h3>Projects</h3><p>Plans, experiments, inventions, ongoing work, and ambitious ideas waiting for their turn.</p><div class="chips"><span class="chip">In progress</span><span class="chip">Ideas</span><span class="chip">Experiments</span><span class="chip">Future plans</span></div></article>
+<article class="card personal" tabindex="0" data-section="personal"><div class="card-top"><div class="icon">✨</div><div class="arrow">↗</div></div><h3>Personal</h3><p>Goals, reflections, dreams, milestones, and little things worth remembering.</p><div class="chips"><span class="chip">Goals</span><span class="chip">Dreams</span><span class="chip">Journal</span><span class="chip">Milestones</span></div></article>
+<article class="card misc" tabindex="0" data-section="misc"><div class="card-top"><div class="icon">🌀</div><div class="arrow">↗</div></div><h3>The Miscellaneous</h3><p>For the strange, the unclassifiable, the temporary obsession, and the “wait, I need to save this.”</p><div class="chips"><span class="chip">Random thoughts</span><span class="chip">Memes</span><span class="chip">Discoveries</span><span class="chip">Unsorted</span></div></article>
+</section><footer class="footer">THE OBSERVATORY · A PERSONAL UNIVERSE</footer></main>
+<div class="overlay" id="overlay"><div class="panel"><header class="panel-head" id="panel-head"><div class="panel-title"><div class="icon" id="panel-icon"></div><h2 id="panel-title"></h2></div><button class="close" id="close" aria-label="Close">×</button></header><div class="panel-body"><p class="panel-description" id="panel-description"></p><div class="subsections" id="subsections"></div><div class="add-box"><h3>Save something here ✨</h3><form id="item-form"><input id="item-title" placeholder="Title" required maxlength="100"><textarea id="item-text" placeholder="Description, notes, links, thoughts..." maxlength="3000"></textarea><button class="add-btn" type="submit">Add to this section</button></form></div><div class="items" id="items"></div></div></div></div>
 <script>
-const map=document.querySelector('.map');
-const places=[...document.querySelectorAll('.place')];
-const STORAGE_KEY='observatory-map-positions-v1';
-let saved={};try{saved=JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}')}catch{}
-const COMPONENT_KEY='observatory-map-components-v2';
-let componentPositions={};try{componentPositions=JSON.parse(localStorage.getItem(COMPONENT_KEY)||'{}')}catch{}
-const mapComponents=[...map.querySelectorAll('use[href="#tree"],use[href="#mountain"]')];
-mapComponents.forEach((component,index)=>{
-  const key='map-component-'+index;
-  if(componentPositions[key])component.setAttribute('transform',componentPositions[key]);
-  let dragging=false,startX=0,startY=0,baseX=0,baseY=0,originalTransform='';
-  component.style.cursor='grab';
-  component.addEventListener('pointerdown',e=>{if(e.button!==0)return;e.stopPropagation();const matrix=component.transform.baseVal.consolidate()?.matrix;startX=e.clientX;startY=e.clientY;baseX=matrix?.e||0;baseY=matrix?.f||0;originalTransform=component.getAttribute('transform')||'';dragging=true;component.setPointerCapture(e.pointerId);});
-  component.addEventListener('pointermove',e=>{if(!dragging)return;const rect=map.getBoundingClientRect(),dx=(e.clientX-startX)*1500/rect.width,dy=(e.clientY-startY)*1000/rect.height;if(Math.abs(dx)+Math.abs(dy)>3){component.setAttribute('transform',`translate(${baseX+dx} ${baseY+dy}) ${originalTransform}`.trim());component.style.cursor='grabbing';}});
-  component.addEventListener('pointerup',()=>{if(!dragging)return;dragging=false;component.style.cursor='grab';const current=component.getAttribute('transform')||'';if(current!==originalTransform){componentPositions[key]=current;localStorage.setItem(COMPONENT_KEY,JSON.stringify(componentPositions));}});
-  component.addEventListener('pointercancel',()=>{dragging=false;component.style.cursor='grab';});
-});
-const view=document.getElementById('location-view'),content=document.getElementById('location-content');
-const entryKey='observatory-location-entries-v1';
-let entries={};try{entries=JSON.parse(localStorage.getItem(entryKey)||'{}')}catch{}
-const descriptions={
-'The Library':'A vast, ever-expanding library. Books, notes, knowledge, discoveries, and anything worth keeping.',
-'Manga Forest':'A forest of panels, volumes, characters, worlds, and stories waiting to be read.',
-'The OC Atelier':'The workshop where original characters are born, redesigned, developed, and occasionally cause chaos.',
-'Character Forge':'A forge for personalities, designs, quirks, backstories, relationships, and characters who refuse to behave.',
-'Storylands':'A continent of plots, manga ideas, novels, scenes, worlds, and narrative experiments.',
-'Philosophers\' Coast':'Questions about existence, ethics, society, meaning, nature, and all those thoughts that refuse to leave at 2 AM.',
-'The Universe':'Cosmology, galaxies, stars, black holes, origins, endings, and the immense things we don\'t yet know.',
-'Space':'Spaceflight, exploration, spacecraft, missions, orbital mechanics, and humanity\'s next steps beyond Earth.',
-'Physics':'The laws, symmetries, forces, and beautiful machinery underlying reality.',
-'Maths':'Patterns, proofs, olympiad problems, abstractions, and the language of structure.',
-'Linguistics':'Languages, etymology, writing systems, grammar, sounds, and the ways humans shape meaning.',
-'Art':'Sketches, visual ideas, design, illustration, aesthetics, and experiments with shape and colour.',
-'The Music Isles':'Songs, musical ideas, rhythms, moods, and soundtracks to imaginary places.',
-'The Cinema':'Films, animation, visual storytelling, scenes, and the art of making a world feel real.',
-'Nature Sanctuary':'Animals, plants, ecosystems, environmental ideas, and the living world worth protecting.',
-'History':'Civilizations, people, events, inventions, and the long, messy story of humanity.',
-'Myth & Legend':'Mythologies, folklore, legendary creatures, ancient beliefs, and stories that outlived their origins.',
-'Dream Observatory':'Dreams, lucid dreaming, surreal experiences, imagination, and the strange landscape of sleep.',
-'The Archive':'An archive of personal notes, memories, ideas, references, and things that should not be lost.',
-'The Inventors\' Guild':'Projects, experiments, prototypes, websites, inventions, and things being built simply because they can be.',
-'The Garden of Ideas':'Random thoughts, sparks, concepts, questions, and seeds of projects that may grow into something huge.',
-'The Language Bazaar':'Languages being learned, phrases collected, translations, vocabulary, and cross-cultural discoveries.',
-'The Uncharted':'A deliberately blank region. Interests, discoveries, and future obsessions will find their place here.',
-'The Games District':'Games, worlds, mechanics, lore, challenges, and interactive ideas.',
-'The Great Questions':'The questions that connect everything: what is reality, what is life, how do we know, and what should we do?'
+const data={
+knowledge:{title:'Knowledge',icon:'📚',color:'#d5edff',description:'Your little collection of things to learn, understand, investigate, and question.',sub:['Physics','Mathematics','Astronomy & Space','Philosophy','History','Linguistics','Science discoveries','Study notes']},
+creation:{title:'Creation',icon:'🎨',color:'#ffe0e9',description:'The workshop for everything you invent, imagine, write, design, or bring to life.',sub:['Stories & writing','Original characters','Character design','Manga ideas','Worldbuilding','Art & sketches','Plot ideas','Creative experiments']},
+interests:{title:'Interests',icon:'🌿',color:'#d9f5d9',description:'The things you love exploring just because they are interesting.',sub:['Nature & animals','Music','Cinema & animation','Games','Manga & books','Mythology','Random obsessions','Favourite things']},
+projects:{title:'Projects',icon:'🚀',color:'#e6dcff',description:'A home for projects in motion, future plans, experiments, and ambitious schemes.',sub:['Currently working on','Project ideas','Experiments','Inventions','Websites & digital projects','Long-term plans','Completed projects']},
+personal:{title:'Personal',icon:'✨',color:'#fff0c4',description:'A private-ish corner for goals, reflections, memories, dreams, and progress.',sub:['Goals','Dreams & aspirations','Journal','Milestones','Things to remember','Personal reflections']},
+misc:{title:'The Miscellaneous',icon:'🌀',color:'#ffe2cb',description:'No category? No problem. This section is gloriously and intentionally unclassifiable.',sub:['Random thoughts','Funny things','Interesting discoveries','Temporary obsessions','Things to sort later']}
 };
-const sectionNames={
-'The Library':['Bookshelf','Reading list','Quotes & passages'],
-'Manga Forest':['Series trail','Favourite chapters','Characters'],
-'The OC Atelier':['Character concepts','Design sketches','Creation notes'],
-'Character Forge':['Character files','Traits & abilities','Relationships'],
-'Storylands':['Worlds','Plot threads','Scenes'],
-'Philosophers\' Coast':['Questions','Arguments','Thought experiments'],
-'The Universe':['Cosmic objects','Concepts','Discoveries'],
-'Space':['Missions','Spacecraft','Engineering notes'],
-'Physics':['Concepts','Problems','Thought experiments'],
-'Maths':['Problems','Proofs','Patterns'],
-'Linguistics':['Languages','Word discoveries','Writing systems'],
-'Art':['Sketchbook','Studies','Ideas'],
-'The Music Isles':['Songs','Playlists','Musical ideas'],
-'The Cinema':['Films','Scenes','Reviews'],
-'Nature Sanctuary':['Species','Observations','Conservation ideas'],
-'History':['Events','People','Civilizations'],
-'Myth & Legend':['Mythologies','Creatures','Stories'],
-'Dream Observatory':['Dream logs','Lucid dreams','Dream experiments'],
-'The Archive':['Saved fragments','References','Personal notes'],
-'The Inventors\' Guild':['Projects','Experiments','Build log'],
-'The Garden of Ideas':['Seeds','Developing ideas','Wild thoughts'],
-'The Language Bazaar':['Vocabulary','Useful phrases','Learning notes'],
-'The Uncharted':['New discoveries','Potential interests','Random encounters'],
-'The Games District':['Games','Worlds & lore','Mechanics'],
-'The Great Questions':['Questions','Possible answers','Open mysteries']
-};
-let activePlace='';
-function escapeHTML(value){return String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
-function openLocation(name,desc){
- activePlace=name;document.getElementById('location-title').textContent=name;document.getElementById('location-desc').textContent=desc||descriptions[name]||'A new corner of the Observatory, ready to be explored.';
- document.getElementById('location-kicker').textContent=(name.toUpperCase()+' · OPENING THE ATLAS').slice(0,80);
- view.classList.add('open');renderTab('overview');document.querySelectorAll('#location-nav button').forEach(b=>b.classList.toggle('active',b.dataset.tab==='overview'));
-}
-function renderTab(tab){
- const labels=sectionNames[activePlace]||['Collected items','Ideas','Notes'];
- const savedItems=entries[activePlace]||[];
- if(tab==='overview'){
- content.innerHTML=`<h3 class="section-title">Welcome to ${escapeHTML(activePlace)}</h3><p class="section-intro">This is your own corner of the atlas. Explore, collect, create, and let it grow.</p><div class="location-grid"><article class="location-card"><div class="card-meta">YOUR SPACE</div><h3>${escapeHTML(labels[0])}</h3><p>A place to gather everything belonging here.</p></article><article class="location-card"><div class="card-meta">EXPLORE</div><h3>${escapeHTML(labels[1])}</h3><p>Follow curiosities, discoveries, and unfinished trails.</p></article><article class="location-card"><div class="card-meta">KEEP</div><h3>${escapeHTML(labels[2])}</h3><p>Record the things you want to remember.</p></article></div><div style="margin-top:26px"><button class="location-action" data-goto="collection">Open your collections →</button></div>`;
- }else if(tab==='collection'){
- content.innerHTML=`<h3 class="section-title">${escapeHTML(labels[0])}</h3><p class="section-intro">Your collection in this location. Add an entry and it will stay saved in this browser.</p><div class="entry-list">${savedItems.length?savedItems.map((item,i)=>`<article class="location-card" style="margin-bottom:12px"><div class="card-meta">ENTRY ${i+1}</div><h3>${escapeHTML(item.title)}</h3><p>${escapeHTML(item.body)}</p><button class="location-action" style="margin-top:12px" data-delete="${i}">Remove entry</button></article>`).join(''):'<div class="empty-state">Nothing has been collected here yet. The first discovery is yours.</div>'}</div><form class="entry-form" id="entry-form"><h3 class="section-title">Add something to this place</h3><input name="title" placeholder="Title / name" required maxlength="100"><textarea name="body" placeholder="Description, details, thoughts, links to remember..." required maxlength="3000"></textarea><button class="location-action" type="submit">Save to this location</button></form>`;
- }else{
- content.innerHTML=`<h3 class="section-title">${escapeHTML(labels[2])}</h3><p class="section-intro">Loose thoughts, observations, questions, and things you don't want to lose.</p><div class="entry-list">${savedItems.length?savedItems.map((item,i)=>`<article class="location-card" style="margin-bottom:12px"><div class="card-meta">FIELD NOTE ${i+1}</div><h3>${escapeHTML(item.title)}</h3><p>${escapeHTML(item.body)}</p></article>`).join(''):'<div class="empty-state">The pages are blank—for now. Leave the first field note.</div>'}</div><form class="entry-form" id="entry-form"><h3 class="section-title">Write a field note</h3><input name="title" placeholder="A note's title" required maxlength="100"><textarea name="body" placeholder="Write anything you wish to keep..." required maxlength="3000"></textarea><button class="location-action" type="submit">Save field note</button></form>`;
- }
- content.querySelectorAll('[data-goto]').forEach(b=>b.onclick=()=>{document.querySelector('#location-nav button[data-tab="collection"]').click()});
- content.querySelectorAll('[data-delete]').forEach(b=>b.onclick=()=>{savedItems.splice(Number(b.dataset.delete),1);entries[activePlace]=savedItems;localStorage.setItem(entryKey,JSON.stringify(entries));renderTab(tab)});
- const form=document.getElementById('entry-form');if(form)form.onsubmit=e=>{e.preventDefault();const fd=new FormData(form);entries[activePlace]=entries[activePlace]||[];entries[activePlace].push({title:fd.get('title'),body:fd.get('body')});localStorage.setItem(entryKey,JSON.stringify(entries));renderTab(tab);};
-}
-document.querySelectorAll('#location-nav button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#location-nav button').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderTab(b.dataset.tab)});
-document.getElementById('back-map').onclick=()=>view.classList.remove('open');
-places.forEach(place=>{
- const name=place.dataset.name;if(saved[name])place.setAttribute('transform',saved[name]);
- let dragging=false,moved=false,startX=0,startY=0,baseX=0,baseY=0;
- place.addEventListener('pointerdown',e=>{if(e.button!==0)return;const matrix=place.transform.baseVal.consolidate()?.matrix;if(!matrix)return;startX=e.clientX;startY=e.clientY;baseX=matrix.e;baseY=matrix.f;dragging=true;moved=false;place.setPointerCapture(e.pointerId);});
- place.addEventListener('pointermove',e=>{if(!dragging)return;const rect=map.getBoundingClientRect(),dx=(e.clientX-startX)*1500/rect.width,dy=(e.clientY-startY)*1000/rect.height;if(Math.abs(dx)+Math.abs(dy)>4)moved=true;if(moved)place.setAttribute('transform',`translate(${baseX+dx} ${baseY+dy})`);});
- place.addEventListener('pointerup',()=>{if(!dragging)return;dragging=false;if(moved){saved[name]=place.getAttribute('transform');localStorage.setItem(STORAGE_KEY,JSON.stringify(saved));}else openLocation(name,place.dataset.desc);});
- place.addEventListener('pointercancel',()=>dragging=false);
-});
-document.addEventListener('keydown',e=>{if(e.key==='Escape'&&view.classList.contains('open'))view.classList.remove('open')});
-</script>
-</body></html>
+const storage='observatory-sections-items-v1';let saved={};try{saved=JSON.parse(localStorage.getItem(storage)||'{}')}catch{}
+const overlay=document.getElementById('overlay');
+function openSection(key){const s=data[key];document.getElementById('panel-head').style.setProperty('--panel-color',s.color);document.getElementById('panel-head').style.background=s.color;document.getElementById('panel-icon').textContent=s.icon;document.getElementById('panel-title').textContent=s.title;document.getElementById('panel-description').textContent=s.description;document.getElementById('subsections').innerHTML=s.sub.map(name=>'<article class="subsection"><h3>'+esc(name)+'</h3><p>A space for your '+esc(name.toLowerCase())+'.</p></article>').join('');renderItems(key);overlay.classList.add('open');document.body.style.overflow='hidden';overlay.dataset.active=key}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function renderItems(key){const list=saved[key]||[];document.getElementById('items').innerHTML=list.length?list.map((item,i)=>'<article class="item"><h4>'+esc(item.title)+'</h4><p>'+esc(item.text||'')+'</p><button data-remove="'+i+'">Remove</button></article>').join(''):'<div class="empty">Nothing saved here yet. Start filling your universe! 🌟</div>';document.querySelectorAll('[data-remove]').forEach(b=>b.onclick=()=>{list.splice(Number(b.dataset.remove),1);saved[key]=list;localStorage.setItem(storage,JSON.stringify(saved));renderItems(key)})}
+document.querySelectorAll('.card').forEach(card=>{card.onclick=()=>openSection(card.dataset.section);card.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openSection(card.dataset.section)}}});
+document.getElementById('close').onclick=()=>{overlay.classList.remove('open');document.body.style.overflow=''};overlay.onclick=e=>{if(e.target===overlay){overlay.classList.remove('open');document.body.style.overflow=''}};document.addEventListener('keydown',e=>{if(e.key==='Escape'){overlay.classList.remove('open');document.body.style.overflow=''}});
+document.getElementById('item-form').onsubmit=e=>{e.preventDefault();const key=overlay.dataset.active;saved[key]=saved[key]||[];saved[key].push({title:document.getElementById('item-title').value,text:document.getElementById('item-text').value});localStorage.setItem(storage,JSON.stringify(saved));e.target.reset();renderItems(key)};
+</script></body></html>
